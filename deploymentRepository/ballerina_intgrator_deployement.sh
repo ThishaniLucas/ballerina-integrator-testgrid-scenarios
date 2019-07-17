@@ -1,0 +1,128 @@
+#! /bin/bash
+
+# Copyright (c) 2018, WSO2 Inc. (http://wso2.com) All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+set -e
+set -o xtrace
+
+
+echo "=== Install Ballerina ==="
+
+pwd
+#to do --> get thet parameters from input dir
+echo "=== Read values from deployment.properties ==="
+INPUTS_DIR=$2
+echo "$2"
+echo "$INPUTS_DIR"
+
+pwd
+
+# ballerina_integrator_aws_s3_access_key=value1
+# ballerina_integrator_aws_s3_secret_key=value2
+source $INPUTS_DIR/infrastructure.properties
+$ballerina_integrator_aws_s3_access_key
+$ballerina_integrator_aws_s3_secret_key
+
+#setup git
+setup_git(){
+# Add github key to known host
+ssh-keyscan -H "github.com" >> ~/.ssh/known_hosts
+# Start the ssh-agent
+eval "$(ssh-agent -s)"
+# Write ssh key to id-rsa file and set the permission
+echo "$1" > ~/.ssh/id_rsa
+username=$(id -un)
+
+if [ "$username" == "centos" ]; then
+    chmod 600 /home/centos/.ssh/id_rsa
+else
+    chmod 600 /home/ubuntu/.ssh/id_rsa
+fi
+
+# Add ssh key to the agent
+ssh-add ~/.ssh/id_rsa
+
+}
+
+setup_deployment(){
+    # download_ballerina
+    download_s3
+    build_bal_service
+    #write_properties_to_data_bucket
+    local is_debug_enabled=${infra_config["isDebugEnabled"]}
+    if [ "${is_debug_enabled}" = "true" ]; then
+        print_kubernetes_debug_info
+    fi
+}
+
+#Download the ballerina run script
+download_ballerina(){
+git clone https://github.com/ballerina-platform/ballerina-scenario-tests.git
+cd ballerina-scenario-tests/test-grid-scripts/setup
+sh setup_deployment_env.sh
+echo "=== Ballerina Installed ==="
+}
+
+
+#Download S3 connector
+download_s3(){
+git clone https://github.com/KasunAratthanage/module-amazons3.git
+cd module-amazons3
+ballerina build --skiptests amazons3
+ballerina install --no-build amazons3
+
+echo "=== Successfully setup s3  ==="
+
+}
+
+pwd
+
+#Copy ballerina service to s3
+build_bal_service(){
+pwd
+cd ..
+pwd
+git clone https://github.com/KasunAratthanage/ballerina-integrator
+cd ballerina-integrator
+git checkout test_s3connector
+pwd
+cd examples/s3
+cp api_test.bal ../../../module-amazons3
+# to do --> need to add conf.bal here
+ballerina build api_test.bal
+
+echo "=== Ballerina service build successfully ==="
+
+# Run generated docker image
+# kubectl apply -f ${work_dir}/target/kubernetes/api_test --namespace=${cluster_namespace}
+
+}
+
+write_properties_to_data_bucket() {
+    local external_ip=$(kubectl get nodes -o=jsonpath='{.items[0].status.addresses[?(@.type=="ExternalIP")].address}')
+    local node_port=$(kubectl get svc ballerina-guides-employee-database-service -o=jsonpath='{.spec.ports[0].nodePort}')
+    declare -A deployment_props
+    deployment_props["ExternalIP"]=${external_ip}
+    deployment_props["NodePort"]=${node_port}
+    write_to_properties_file ${output_dir}/deployment.properties deployment_props
+    local is_debug_enabled=${infra_config["isDebugEnabled"]}
+    if [ "${is_debug_enabled}" = "true" ]; then
+        echo "ExternalIP: ${external_ip}"
+        echo "NodePort: ${node_port}"
+    fi
+}
+
+
+setup_deployment
