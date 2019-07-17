@@ -106,7 +106,7 @@ ballerina build api_test.bal
 echo "=== Ballerina service build successfully ==="
 
 # Run generated docker image
-# kubectl apply -f ${work_dir}/target/kubernetes/api_test --namespace=${cluster_namespace}
+kubectl apply -f ${work_dir}/target/kubernetes/api_test --namespace=${cluster_namespace}
 
 }
 
