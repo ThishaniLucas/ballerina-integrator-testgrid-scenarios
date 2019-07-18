@@ -78,7 +78,7 @@ setup_deployment(){
 download_ballerina(){
 git clone https://github.com/ballerina-platform/ballerina-scenario-tests.git
 cd ballerina-scenario-tests/test-grid-scripts/setup
-sh setup_deployment_env.sh
+source setup_deployment_env.sh
 echo "=== Ballerina Installed ==="
 }
 
