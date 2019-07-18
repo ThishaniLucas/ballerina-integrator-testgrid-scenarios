@@ -67,7 +67,7 @@ setup_deployment(){
     download_ballerina
     download_s3
     build_bal_service
-    #write_properties_to_data_bucket
+    write_properties_to_data_bucket
     local is_debug_enabled=${infra_config["isDebugEnabled"]}
     if [ "${is_debug_enabled}" = "true" ]; then
         print_kubernetes_debug_info
