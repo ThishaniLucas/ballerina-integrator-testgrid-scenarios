@@ -24,16 +24,23 @@ pwd
 #to do --> get thet parameters from input dir
 echo "=== Read values from deployment.properties ==="
 INPUTS_DIR=$2
-echo "$2"
-echo "$INPUTS_DIR"
+echo "My INPUTS_DIR is $INPUTS_DIR"
 
-pwd
+# FUNCTION get_property
+# ARG 1 - path to the properties file
+# ARG 2 - key name to extract
+get_property() {
+    prop_file=$1
+    key=$2
+    cat $prop_file | grep $key | tail -n 1 | cut -d'=' -f2
+}
 
-# ballerina_integrator_aws_s3_access_key=value1
-# ballerina_integrator_aws_s3_secret_key=value2
-source $INPUTS_DIR/infrastructure.properties
-$ballerina_integrator_aws_s3_access_key
-$ballerina_integrator_aws_s3_secret_key
+ballerina_integrator_aws_s3_access_key=$(get_property $INPUTS_DIR/infrastructure.properties ballerina_integrator_aws_s3_access_key)
+ballerina_integrator_aws_s3_secret_key=$(get_property $INPUTS_DIR/infrastructure.properties ballerina_integrator_aws_s3_secret_key)
+
+echo extracted ballerina_integrator_aws_s3_access_key = $ballerina_integrator_aws_s3_access_key
+
+sleep 1;
 
 #setup git
 setup_git(){
