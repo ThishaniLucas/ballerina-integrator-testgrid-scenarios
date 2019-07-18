@@ -64,7 +64,7 @@ ssh-add ~/.ssh/id_rsa
 }
 
 setup_deployment(){
-    # download_ballerina
+    download_ballerina
     download_s3
     build_bal_service
     #write_properties_to_data_bucket
