@@ -1,4 +1,4 @@
--- common.sh
+-- common.sh ${input_dir}
 #! /bin/bash
 
 # Copyright (c) 2018, WSO2 Inc. (http://wso2.com) All Rights Reserved.
@@ -17,7 +17,6 @@
 
 set -e
 set -o xtrace
-input_dir=$2
 
 echo "=== Install Ballerina ==="
 
