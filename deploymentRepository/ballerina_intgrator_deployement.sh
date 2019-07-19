@@ -18,6 +18,7 @@
 set -e
 set -o xtrace
 input_dir=$2
+output_dir=$4
 
 echo "=== Install Ballerina ==="
 
