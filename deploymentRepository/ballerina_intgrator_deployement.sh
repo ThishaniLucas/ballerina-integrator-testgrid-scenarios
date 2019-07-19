@@ -80,8 +80,7 @@ download_ballerina(){
 git clone https://github.com/KasunAratthanage/ballerina-scenario-tests.git
 cd ballerina-scenario-tests/test-grid-scripts/common
 source usage.sh
-cd ../../../
-cd ballerina-scenario-tests/test-grid-scripts/setup
+cd ../../test-grid-scripts/setup
 source setup_deployment_env.sh
 echo "=== Ballerina Installed ==="
 }
