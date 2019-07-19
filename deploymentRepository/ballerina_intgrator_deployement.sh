@@ -16,7 +16,7 @@
 
 set -e
 set -o xtrace
-
+input_dir=$2
 
 echo "=== Install Ballerina ==="
 
@@ -78,9 +78,9 @@ setup_deployment(){
 download_ballerina(){
 # git clone https://github.com/ballerina-platform/ballerina-scenario-tests.git
 git clone https://github.com/KasunAratthanage/ballerina-scenario-tests.git
-cd ballerina-scenario-tests/test-grid-scripts/common
-source usage.sh
-cd ../setup
+cd ballerina-scenario-tests/test-grid-scripts/setup
+# source usage.sh
+# cd ../setup
 source setup_deployment_env.sh
 echo "=== Ballerina Installed ==="
 }
