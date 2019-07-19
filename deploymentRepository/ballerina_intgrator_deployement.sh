@@ -1,4 +1,4 @@
--- common.sh ${input_dir}
+-- common.sh 
 #! /bin/bash
 
 # Copyright (c) 2018, WSO2 Inc. (http://wso2.com) All Rights Reserved.
@@ -17,14 +17,15 @@
 
 set -e
 set -o xtrace
+input_dir=$2
 
 echo "=== Install Ballerina ==="
 
 pwd
 #to do --> get thet parameters from input dir
 echo "=== Read values from deployment.properties ==="
-INPUTS_DIR=$2
-echo "My INPUTS_DIR is $INPUTS_DIR"
+input_dir=$2
+echo "My INPUTS_DIR is $input_dir"
 
 # FUNCTION get_property
 # ARG 1 - path to the properties file
@@ -35,8 +36,8 @@ get_property() {
     cat $prop_file | grep $key | tail -n 1 | cut -d'=' -f2
 }
 
-ballerina_integrator_aws_s3_access_key=$(get_property $INPUTS_DIR/infrastructure.properties ballerina_integrator_aws_s3_access_key)
-ballerina_integrator_aws_s3_secret_key=$(get_property $INPUTS_DIR/infrastructure.properties ballerina_integrator_aws_s3_secret_key)
+ballerina_integrator_aws_s3_access_key=$(get_property $input_dir/infrastructure.properties ballerina_integrator_aws_s3_access_key)
+ballerina_integrator_aws_s3_secret_key=$(get_property $input_dir/infrastructure.properties ballerina_integrator_aws_s3_secret_key)
 
 echo extracted ballerina_integrator_aws_s3_access_key = $ballerina_integrator_aws_s3_access_key
 
