@@ -96,8 +96,9 @@ echo "=== Ballerina Installed ==="
 download_s3(){
 git clone https://github.com/KasunAratthanage/module-amazons3.git
 cd module-amazons3
-ballerina build --skiptests amazons3
-ballerina install --no-build amazons3
+${ballerina_home}/bin/ballerina build amazons3 --skiptests
+# ballerina build --skiptests amazons3
+# ballerina install --no-build amazons3
 
 echo "=== Successfully setup s3  ==="
 
