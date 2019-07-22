@@ -125,6 +125,8 @@ ls
 pwd
 cd module-amazons3
 touch conf.bal
+chmod -R 777 conf.bal
+cat conf.bal
 ls
 echo "ballerina_integrator_aws_s3_access_key" >> /conf.bal
 echo "ballerina_integrator_aws_s3_secret_key" >> /conf.bal
