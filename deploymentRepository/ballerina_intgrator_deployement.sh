@@ -84,8 +84,8 @@ cd ballerina-scenario-tests/test-grid-scripts/common
 source usage.sh
 cd ../setup
 source setup_deployment_env.sh 
-ballerina version
-echo ballerina version
+pwd
+ls
 echo "=== Ballerina Installed ==="
 }
 
