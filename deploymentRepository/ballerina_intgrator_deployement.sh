@@ -1,4 +1,5 @@
 -- common.sh 
+-- deployment_utils.sh
 #! /bin/bash
 
 # Copyright (c) 2018, WSO2 Inc. (http://wso2.com) All Rights Reserved.
@@ -19,6 +20,7 @@ set -e
 set -o xtrace
 input_dir=$2
 output_dir=$4
+ballerina_home=$3
 
 echo "=== Install Ballerina ==="
 
@@ -94,7 +96,7 @@ echo "=== Ballerina Installed ==="
 download_s3(){
 git clone https://github.com/KasunAratthanage/module-amazons3.git
 cd module-amazons3
-chmod -R 777 ballerina_home=/testgrid/testgrid-home/jobs/kasunA-ballerina-integrator-k8s/kasunA-ballerina-integrator-k8s_deployment_CentOS-7.5_MySQL-5.7_run42/workspace/DeploymentRepository/ballerina-scenario-tests/test-grid-scripts/util/ballerina-0.991.0
+chmod -R 777 ballerina_home=$3
 ballerina build --skiptests amazons3
 ballerina install --no-build amazons3
 
