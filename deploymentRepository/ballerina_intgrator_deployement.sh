@@ -94,7 +94,7 @@ echo "=== Ballerina Installed ==="
 download_s3(){
 git clone https://github.com/KasunAratthanage/module-amazons3.git
 cd module-amazons3
-ballerina_home=/testgrid/testgrid-home/jobs/kasunA-ballerina-integrator-k8s/kasunA-ballerina-integrator-k8s_deployment_CentOS-7.5_MySQL-5.7_run42/workspace/DeploymentRepository/ballerina-scenario-tests/test-grid-scripts/util/ballerina-0.991.0
+ballerina_home=chmod -R 777 /testgrid/testgrid-home/jobs/kasunA-ballerina-integrator-k8s/kasunA-ballerina-integrator-k8s_deployment_CentOS-7.5_MySQL-5.7_run42/workspace/DeploymentRepository/ballerina-scenario-tests/test-grid-scripts/util/ballerina-0.991.0
 ballerina build --skiptests amazons3
 ballerina install --no-build amazons3
 
