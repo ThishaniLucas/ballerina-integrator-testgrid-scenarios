@@ -120,6 +120,11 @@ cd examples/s3
 cp api_test.bal ../../../module-amazons3
 # to do --> need to add conf.bal here
 # ballerina build api_test.bal
+cd ../../
+cd touch module-amazons3/conf.bal
+echo "ballerina_integrator_aws_s3_access_key" >> /conf.bal
+echo "ballerina_integrator_aws_s3_secret_key" >> /conf.bal
+
 ${ballerina_home}/bin/ballerina build api_test.bal
 
 echo "=== Ballerina service build successfully ==="
