@@ -97,7 +97,7 @@ download_s3(){
 git clone https://github.com/KasunAratthanage/module-amazons3.git
 cd module-amazons3
 ${ballerina_home}/bin/ballerina build amazons3 --skiptests
-${ballerina_home}/bin/ballerina install amazons3 --no-build
+# ${ballerina_home}/bin/ballerina install amazons3 --no-build
 # ballerina build --skiptests amazons3
 # ballerina install --no-build amazons3
 
@@ -120,13 +120,13 @@ cd examples/s3
 cp api_test.bal ../../../module-amazons3
 # to do --> need to add conf.bal here
 # ballerina build api_test.bal
-${ballerina_home}/bin/ballerina build api_test.bal
 cd ../../
 pwd
-# cd module-amazons3
-# touch conf.bal
-# echo "ballerina_integrator_aws_s3_access_key" >> /conf.bal
-# echo "ballerina_integrator_aws_s3_secret_key" >> /conf.bal
+cd module-amazons3
+touch conf.bal
+echo "ballerina_integrator_aws_s3_access_key" >> /conf.bal
+echo "ballerina_integrator_aws_s3_secret_key" >> /conf.bal
+${ballerina_home}/bin/ballerina build api_test.bal
 
 echo "=== Ballerina service build successfully ==="
 
