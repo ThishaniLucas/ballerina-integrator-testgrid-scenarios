@@ -20,7 +20,7 @@ set -e
 set -o xtrace
 input_dir=$2
 output_dir=$4
-ballerina_home=$3
+ballerina_home
 
 echo "=== Install Ballerina ==="
 
@@ -96,7 +96,7 @@ echo "=== Ballerina Installed ==="
 download_s3(){
 git clone https://github.com/KasunAratthanage/module-amazons3.git
 cd module-amazons3
-chmod -R 777 ballerina_home=$3
+chmod -R 777 ballerina_home
 ballerina build --skiptests amazons3
 ballerina install --no-build amazons3
 
