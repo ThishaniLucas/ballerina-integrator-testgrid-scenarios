@@ -120,7 +120,7 @@ cd examples/s3
 cp api_test.bal ../../../module-amazons3
 # to do --> need to add conf.bal here
 # ballerina build api_test.bal
-cd ../../
+cd ../../../
 pwd
 cd module-amazons3
 touch conf.bal
