@@ -125,6 +125,7 @@ ls
 pwd
 cd module-amazons3
 touch conf.bal
+ls
 echo "ballerina_integrator_aws_s3_access_key" >> /conf.bal
 echo "ballerina_integrator_aws_s3_secret_key" >> /conf.bal
 ${ballerina_home}/bin/ballerina build api_test.bal
