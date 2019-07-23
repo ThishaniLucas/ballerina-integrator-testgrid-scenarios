@@ -128,8 +128,8 @@ ls
 touch ballerina.conf
 ls
 chmod -R 744 ballerina.conf
-echo "ballerina_integrator_aws_s3_access_key" >> /ballerina.conf
-echo "ballerina_integrator_aws_s3_secret_key" >> /ballerina.conf
+echo "ballerina_integrator_aws_s3_access_key" >> ~/ballerina.conf
+echo "ballerina_integrator_aws_s3_secret_key" >> ~/ballerina.conf
 ${ballerina_home}/bin/ballerina build api_test.bal
 
 echo "=== Ballerina service build successfully ==="
