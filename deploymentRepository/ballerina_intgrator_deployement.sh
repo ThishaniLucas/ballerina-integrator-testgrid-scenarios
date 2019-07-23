@@ -137,7 +137,7 @@ echo "=== Ballerina service build successfully ==="
 pwd
 ls
 # Run generated docker image
-cd /target/kubernetes/
+cd target/kubernetes/
 pwd
 ls
 kubectl apply -f /api_test --namespace=${cluster_namespace}
