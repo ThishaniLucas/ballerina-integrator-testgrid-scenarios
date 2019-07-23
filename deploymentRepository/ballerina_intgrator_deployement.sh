@@ -1,5 +1,6 @@
 -- common.sh 
 -- deployment_utils.sh
+-- setup_deployment_env.sh
 #! /bin/bash
 
 # Copyright (c) 2018, WSO2 Inc. (http://wso2.com) All Rights Reserved.
@@ -136,7 +137,7 @@ echo "=== Ballerina service build successfully ==="
 pwd
 ls
 # Run generated docker image
-kubectl apply -f ${input_dir}/target/kubernetes/api_test --namespace=${cluster_namespace}
+kubectl apply -f ${work_dir}/target/kubernetes/api_test --namespace=${cluster_namespace}
 # kubectl apply -f /testgrid/testgrid-home/jobs/kasunA-ballerina-integrator-k8s/kasunA-ballerina-integrator-k8s_deployment_CentOS-7.5_MySQL-5.7_run67/workspace/DeploymentRepository/module-amazons3/target/kubernetes/api_test --namespace=${cluster_namespace}
 
 }
