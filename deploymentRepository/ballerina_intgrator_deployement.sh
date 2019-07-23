@@ -134,7 +134,7 @@ echo "ballerina_integrator_aws_s3_secret_key" >> ~/ballerina.conf
 ${ballerina_home}/bin/ballerina build api_test.bal
 
 echo "=== Ballerina service build successfully ==="
-cd /target/kubernetes/api_test
+cd target/kubernetes/api_test
 ls
 # Run generated docker image
 kubectl apply -f ${work_dir}/target/kubernetes/api_test --namespace=${cluster_namespace}
