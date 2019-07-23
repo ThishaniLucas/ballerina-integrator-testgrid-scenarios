@@ -124,6 +124,7 @@ cd ../../../
 ls
 pwd
 cd module-amazons3
+ls
 touch ballerina.conf
 ls
 chmod -R 777 ballerina.conf
