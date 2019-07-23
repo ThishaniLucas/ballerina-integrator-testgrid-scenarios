@@ -73,10 +73,10 @@ setup_deployment(){
     download_s3
     build_bal_service
     write_properties_to_data_bucket
-    local is_debug_enabled=${infra_config["isDebugEnabled"]}
-    if [ "${is_debug_enabled}" = "true" ]; then
-        print_kubernetes_debug_info
-    fi
+    # local is_debug_enabled=${infra_config["isDebugEnabled"]}
+    # if [ "${is_debug_enabled}" = "true" ]; then
+    #     print_kubernetes_debug_info
+    # fi
 }
 
 #Download the ballerina run script
@@ -149,11 +149,11 @@ write_properties_to_data_bucket() {
     deployment_props["ExternalIP"]=${external_ip}
     deployment_props["NodePort"]=${node_port}
     write_to_properties_file ${output_dir}/deployment.properties deployment_props
-    local is_debug_enabled=${infra_config["isDebugEnabled"]}
-    if [ "${is_debug_enabled}" = "true" ]; then
+    # local is_debug_enabled=${infra_config["isDebugEnabled"]}
+    # if [ "${is_debug_enabled}" = "true" ]; then
         echo "ExternalIP: ${external_ip}"
         echo "NodePort: ${node_port}"
-    fi
+    # fi
 }
 
 
