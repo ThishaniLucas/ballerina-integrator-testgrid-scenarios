@@ -26,15 +26,18 @@ source $OUTPUT_DIR/deployment.properties
 
 function create_endpoints(){
 
-    echo "KeyManagerUrl=https://${loadBalancerHostName}/services/" >> $OUTPUT_DIR/deployment.properties
-    echo "PublisherUrl=https://${loadBalancerHostName}/publisher" >> $OUTPUT_DIR/deployment.properties
-    echo "StoreUrl=https://${loadBalancerHostName}/store" >> $OUTPUT_DIR/deployment.properties
-    echo "AdminUrl=https://${loadBalancerHostName}/admin" >> $OUTPUT_DIR/deployment.properties
-    echo "CarbonServerUrl=https://${loadBalancerHostName}/services/" >> $OUTPUT_DIR/deployment.properties
-    echo "GatewayHttpsUrl=https://${loadBalancerHostName}:8243" >> $OUTPUT_DIR/deployment.properties
+    # echo "KeyManagerUrl=https://${loadBalancerHostName}/services/" >> $OUTPUT_DIR/deployment.properties
+    # echo "PublisherUrl=https://${loadBalancerHostName}/publisher" >> $OUTPUT_DIR/deployment.properties
+    # echo "StoreUrl=https://${loadBalancerHostName}/store" >> $OUTPUT_DIR/deployment.properties
+    # echo "AdminUrl=https://${loadBalancerHostName}/admin" >> $OUTPUT_DIR/deployment.properties
+    # echo "CarbonServerUrl=https://${loadBalancerHostName}/services/" >> $OUTPUT_DIR/deployment.properties
+    # echo "GatewayHttpsUrl=https://${loadBalancerHostName}:8243" >> $OUTPUT_DIR/deployment.properties
+    # echo "external_ip=$external_ip" >> $OUTPUT_DIR/deployment.properties
     echo "external_ip=$external_ip" >> $OUTPUT_DIR/deployment.properties
+    echo "TestGroup=$TestGroup" >> $OUTPUT_DIR/deployment.properties
+    echo "NodePort=$NodePort" >> $OUTPUT_DIR/deployment.properties
 
-}
+}   
 
 create_endpoints
 
