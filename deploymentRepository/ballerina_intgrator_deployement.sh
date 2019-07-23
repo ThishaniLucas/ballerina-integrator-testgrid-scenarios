@@ -144,7 +144,7 @@ kubectl apply -f ./api_test --namespace=${cluster_namespace}
 
 write_properties_to_data_bucket() {
     local external_ip=$(kubectl get nodes -o=jsonpath='{.items[0].status.addresses[?(@.type=="ExternalIP")].address}')
-    local node_port=$(kubectl get svc ballerina-guides-employee-database-service -o=jsonpath='{.spec.ports[0].nodePort}')
+    local node_port=$(kubectl get svc awss3ep-svc -o=jsonpath='{.spec.ports[0].nodePort}')
     declare -A deployment_props
     deployment_props["ExternalIP"]=${external_ip}
     deployment_props["NodePort"]=${node_port}
