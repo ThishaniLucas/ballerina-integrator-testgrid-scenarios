@@ -1,6 +1,6 @@
--- common.sh 
--- deployment_utils.sh
--- setup_deployment_env.sh
+# -- common.sh 
+# -- deployment_utils.sh
+# -- setup_deployment_env.sh
 #! /bin/bash
 
 # Copyright (c) 2018, WSO2 Inc. (http://wso2.com) All Rights Reserved.
