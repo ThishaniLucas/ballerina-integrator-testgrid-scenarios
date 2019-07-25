@@ -137,7 +137,7 @@ echo "=== Ballerina service build successfully ==="
 cd target/kubernetes
 ls
 echo '======Docker file======'
-cd target/kubernetes/api_test/docker
+cd target/kubernetes/api_test
 ls
 cd target/kubernetes
 # Run generated docker image
@@ -160,6 +160,8 @@ cd target/kubernetes/api_test/docker
 ls
 
 cd target/kubernetes
+
+# create image
 docker build -t kubernetes:v.1.0 .
 sleep 15m
 }
