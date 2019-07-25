@@ -144,7 +144,7 @@ ls
 cd ../../../
 pwd
 
-cp ./target/api_test.balx ./target/kubernetes/api_test/docker
+# cp ./target/api_test.balx ./target/kubernetes/api_test/docker
 
 # cd target/kubernetes
 # Run generated docker 
@@ -156,7 +156,7 @@ kubectl apply -f ./api_test --namespace=${cluster_namespace}
 # cp api_test.balx ./target/kubernetes/api_test/docker
 # echo 'check file>>>>>>>>>>>>>'
 
-cd target/kubernetes
+cd kubernetes
 
 # create image
 docker build -t kubernetes:v.1.0 .
