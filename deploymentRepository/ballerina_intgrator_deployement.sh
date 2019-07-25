@@ -146,7 +146,7 @@ pwd
 
 # cp ./target/api_test.balx ./target/kubernetes/api_test/docker
 
-# cd target/kubernetes
+cd kubernetes
 # Run generated docker 
 kubectl apply -f ./api_test --namespace=${cluster_namespace}
 
