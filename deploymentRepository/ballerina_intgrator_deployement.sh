@@ -153,6 +153,7 @@ cp api_test.balx /target/kubernetes/api_test/docker
 ls /target/kubernetes/api_test/docker
 
 docker build -t kubernetes:v.1.0 .
+sleep 15m
 }
 
 write_properties_to_data_bucket() {
