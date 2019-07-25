@@ -137,7 +137,9 @@ echo "=== Ballerina service build successfully ==="
 cd target/kubernetes
 ls
 echo '======Docker file======'
-ls target/kubernetes/api_test/docket
+cd target/kubernetes/api_test/docker
+ls
+cd target/kubernetes
 # Run generated docker image
 kubectl apply -f ./api_test --namespace=${cluster_namespace}
 
