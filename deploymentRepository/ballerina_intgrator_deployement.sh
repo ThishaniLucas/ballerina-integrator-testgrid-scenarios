@@ -157,7 +157,7 @@ kubectl apply -f ./api_test --namespace=${cluster_namespace}
 # echo "=========docker==========="
 # ls api_test/docker
 cd ../
-cp api_test.balx /target/kubernetes/api_test/docker
+cp api_test.balx ./target/kubernetes/api_test/docker
 echo 'check file>>>>>>>>>>>>>'
 cd target/kubernetes/api_test/docker
 ls
