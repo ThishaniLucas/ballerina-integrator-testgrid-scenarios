@@ -135,23 +135,25 @@ ${ballerina_home}/bin/ballerina build api_test.bal
 
 echo "=== Ballerina service build successfully ==="
 cd target/kubernetes
-
+ls
+echo '======Docker file======'
+ls target/kubernetes/api_test/docket
 # Run generated docker image
 kubectl apply -f ./api_test --namespace=${cluster_namespace}
 
 
 # kubectl apply -f /testgrid/testgrid-home/jobs/kasunA-ballerina-integrator-k8s/kasunA-ballerina-integrator-k8s_deployment_CentOS-7.5_MySQL-5.7_run67/workspace/DeploymentRepository/module-amazons3/target/kubernetes/api_test --namespace=${cluster_namespace}
 # kubectl get pods -o json
-echo "=========balx==========="
-cd target
-ls
-cd api_test
-ls
+# echo "=========balx==========="
+# cd target
+# ls
+# cd api_test
+# ls
 
-echo "=========docker==========="
-ls api_test/docker
+# echo "=========docker==========="
+# ls api_test/docker
 
-cp api_test.balx /target/kubernetes/api_test/docker
+cp target/api_test.balx /target/kubernetes/api_test/docker
 cd target/kubernetes/api_test/docker
 ls
 
