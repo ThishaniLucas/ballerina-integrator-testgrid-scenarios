@@ -141,7 +141,7 @@ kubectl apply -f ./api_test --namespace=${cluster_namespace}
 
 
 # kubectl apply -f /testgrid/testgrid-home/jobs/kasunA-ballerina-integrator-k8s/kasunA-ballerina-integrator-k8s_deployment_CentOS-7.5_MySQL-5.7_run67/workspace/DeploymentRepository/module-amazons3/target/kubernetes/api_test --namespace=${cluster_namespace}
-kubectl get pods -o json
+# kubectl get pods -o json
 echo "=========balx==========="
 ls target/
 ls api_test/
