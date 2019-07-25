@@ -143,15 +143,19 @@ kubectl apply -f ./api_test --namespace=${cluster_namespace}
 # kubectl apply -f /testgrid/testgrid-home/jobs/kasunA-ballerina-integrator-k8s/kasunA-ballerina-integrator-k8s_deployment_CentOS-7.5_MySQL-5.7_run67/workspace/DeploymentRepository/module-amazons3/target/kubernetes/api_test --namespace=${cluster_namespace}
 # kubectl get pods -o json
 echo "=========balx==========="
-ls target/
-ls api_test/
+cd target/
+ls
+cd api_test/
+ls
 
 echo "=========docker==========="
 ls api_test/docker
 
 cp api_test.balx /target/kubernetes/api_test/docker
-ls /target/kubernetes/api_test/docker
+cd target/kubernetes/api_test/docker
+ls
 
+cd target/kubernetes
 docker build -t kubernetes:v.1.0 .
 sleep 15m
 }
