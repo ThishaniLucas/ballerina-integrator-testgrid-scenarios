@@ -139,7 +139,9 @@ ls
 echo '======Docker file======'
 # cd target/kubernetes/api_test
 # ls
-cd target/kubernetes
+cd ../
+pwd
+# cd target/kubernetes
 # Run generated docker image
 kubectl apply -f ./api_test --namespace=${cluster_namespace}
 
