@@ -156,10 +156,10 @@ kubectl apply -f ./api_test --namespace=${cluster_namespace}
 # cp api_test.balx ./target/kubernetes/api_test/docker
 # echo 'check file>>>>>>>>>>>>>'
 
-cd kubernetes
-
 # create image
-docker build -t kubernetes:v.1.0 .
+# docker build -t ${docker_user}/${image}:${tag} ${image_location}
+docker build -t kubernetes:v.1.0 . /target
+
 sleep 15m
 }
 
