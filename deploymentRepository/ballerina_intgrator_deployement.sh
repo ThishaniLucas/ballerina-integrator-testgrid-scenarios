@@ -147,8 +147,8 @@ chmod -R 744 ballerina.conf
 echo "ballerina_integrator_aws_s3_access_key" >> ~/ballerina.conf
 echo "ballerina_integrator_aws_s3_secret_key" >> ~/ballerina.conf
 
-sed -i "s:<USERNAME>:${ballerina_integrator_dockerhub_username}:g" api_test.bal
-sed -i "s:<PASSWORD>:${ballerina_integrator_dockerhub_password}:g" api_test.bal   
+# sed -i "s:<USERNAME>:${ballerina_integrator_dockerhub_username}:g" api_test.bal
+# sed -i "s:<PASSWORD>:${ballerina_integrator_dockerhub_password}:g" api_test.bal   
 
 ${ballerina_home}/bin/ballerina build api_test.bal
 
