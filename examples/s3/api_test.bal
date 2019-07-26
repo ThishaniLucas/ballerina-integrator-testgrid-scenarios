@@ -66,10 +66,16 @@ listener http:Listener awsS3EP = new http:Listener(9090);
 //Add `@kubernetes:Deployment` annotation to a Ballerna service to generate Kuberenetes Deployment for a Ballerina module.
 @kubernetes:Deployment {
     //Enable Kubernetes liveness probe to this service.
-    livenessProbe: true,
+    //livenessProbe: true,
     //Genrate Docker image with name `kubernetes:v1.0`.
-    image: "kubernetes:v.1.0"
+    //image: "kubernetes:v.1.0"
     //Uncomment and change the following values accordingly if you are using minikube.
+    image:"ballerinaintegrator/api_test:v.1.0",
+    name:"deployment-name",
+    username:"ballerinaintegrator",
+    password:"ballerinaintegrator",
+    push:true,
+    imagePullPolicy:"Always"
 
 }
 @http:ServiceConfig {
