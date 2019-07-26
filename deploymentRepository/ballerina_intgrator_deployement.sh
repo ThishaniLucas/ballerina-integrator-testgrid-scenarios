@@ -43,7 +43,14 @@ get_property() {
 ballerina_integrator_aws_s3_access_key=$(get_property $input_dir/infrastructure.properties ballerina_integrator_aws_s3_access_key)
 ballerina_integrator_aws_s3_secret_key=$(get_property $input_dir/infrastructure.properties ballerina_integrator_aws_s3_secret_key)
 
+
+ballerina_integrator_dockerhub_username=$(get_property $input_dir/infrastructure.properties dockerhub_ballerina_scenarios_username)
+ballerina_integrator_dockerhub_password=$(get_property $input_dir/infrastructure.properties dockerhub_ballerina_scenarios_password)
+
+
 echo extracted ballerina_integrator_aws_s3_access_key = $ballerina_integrator_aws_s3_access_key
+
+echo extracted ballerina_integrator_aws_s3_access_key = $ballerina_integrator_dockerhub_username
 
 sleep 1;
 
@@ -68,9 +75,16 @@ ssh-add ~/.ssh/id_rsa
 
 }
 
+replace_variables_in_bal_file() {   
+    sed -i "s:<USERNAME>:${ballerina_integrator_dockerhub_username}:g" ${bal_path}
+    sed -i "s:<PASSWORD>:${ballerina_integrator_dockerhub_password}:g" ${bal_path}   
+}
+
+
 setup_deployment(){
     download_ballerina
     download_s3
+    replace_variables_in_bal_file
     build_bal_service
     write_properties_to_data_bucket
     # local is_debug_enabled=${infra_config["isDebugEnabled"]}
@@ -151,6 +165,7 @@ pwd
 cd kubernetes
 # Run generated docker 
 kubectl apply -f ./api_test --namespace=${cluster_namespace}
+kubectl get pods --namespaces ${cluster_namespace}
 
 # kubectl apply -f /testgrid/testgrid-home/jobs/kasunA-ballerina-integrator-k8s/kasunA-ballerina-integrator-k8s_deployment_CentOS-7.5_MySQL-5.7_run67/workspace/DeploymentRepository/module-amazons3/target/kubernetes/api_test --namespace=${cluster_namespace}
 # kubectl get pods -o json
