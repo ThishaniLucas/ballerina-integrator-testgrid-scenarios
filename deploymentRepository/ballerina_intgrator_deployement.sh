@@ -160,6 +160,7 @@ kubectl apply -f ./api_test --namespace=${cluster_namespace}
 # docker build -t ${docker_user}/${image}:${tag} ${image_location}
 # docker build -t kubernetes:v.1.0 .
 cd kubernetes/api_test/docker
+pwd
 docker build -f Dockerfile -t kubernetes:v.1.0 .
 
 sleep 15m
