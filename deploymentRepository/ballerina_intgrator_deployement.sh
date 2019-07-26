@@ -145,7 +145,7 @@ cd ../../../
 pwd
 
 # cp ./target/api_test.balx ./target/kubernetes/api_test/docker
-chmod -R 755 ./kubernetes/api_test/docker
+chmod -R 755 ~/target/kubernetes/api_test/docker
 cp api_test.balx /kubernetes/api_test/docker
 
 cd kubernetes
