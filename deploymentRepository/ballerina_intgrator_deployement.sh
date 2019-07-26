@@ -125,13 +125,13 @@ pwd
 
 #Copy ballerina service to s3
 build_bal_service(){
-pwd
+
 cd ..
-pwd
+
 git clone https://github.com/KasunAratthanage/ballerina-integrator
 cd ballerina-integrator
 git checkout test_s3connector
-pwd
+
 cd examples/s3
 cp api_test.bal ../../../module-amazons3
 # to do --> need to add conf.bal here
@@ -140,16 +140,16 @@ cd ../../../
 ls
 pwd
 cd module-amazons3
-
-sed -i "s:<USERNAME>:${ballerina_integrator_dockerhub_username}:g" api_test.bal
-sed -i "s:<PASSWORD>:${ballerina_integrator_dockerhub_password}:g" api_test.bal   
-
 ls
 touch ballerina.conf
 ls
 chmod -R 744 ballerina.conf
 echo "ballerina_integrator_aws_s3_access_key" >> ~/ballerina.conf
 echo "ballerina_integrator_aws_s3_secret_key" >> ~/ballerina.conf
+
+sed -i "s:<USERNAME>:${ballerina_integrator_dockerhub_username}:g" api_test.bal
+sed -i "s:<PASSWORD>:${ballerina_integrator_dockerhub_password}:g" api_test.bal   
+
 ${ballerina_home}/bin/ballerina build api_test.bal
 
 echo "=== Ballerina service build successfully ==="
@@ -157,11 +157,11 @@ cd target/kubernetes/api_test
 ls
 echo '======Docker file======'
 cd ../
-pwd
+# pwd
 cd api_test/docker
 ls
 cd ../../../
-pwd
+# pwd
 
 # cp ./target/api_test.balx ./target/kubernetes/api_test/docker
 # chmod -R 777 /kubernetes/api_test/docker
