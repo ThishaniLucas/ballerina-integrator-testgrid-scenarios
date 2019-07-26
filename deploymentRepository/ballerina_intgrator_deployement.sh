@@ -145,8 +145,8 @@ cd ../../../
 pwd
 
 # cp ./target/api_test.balx ./target/kubernetes/api_test/docker
-chmod 777 -R /kubernetes/api_test/docker
-cp api_test.balx /kubernetes/api_test/docker
+# chmod -R 777 /kubernetes/api_test/docker
+# cp api_test.balx /kubernetes/api_test/docker
 
 cd kubernetes
 # Run generated docker 
@@ -161,9 +161,9 @@ kubectl apply -f ./api_test --namespace=${cluster_namespace}
 # create image
 # docker build -t ${docker_user}/${image}:${tag} ${image_location}
 # docker build -t kubernetes:v.1.0 .
-cd api_test/docker
-pwd
-docker build -f Dockerfile -t kubernetes:v.1.0 .
+# cd api_test/docker
+# pwd
+# docker build -f Dockerfile -t kubernetes:v.1.0 .
 
 sleep 15m
 }
