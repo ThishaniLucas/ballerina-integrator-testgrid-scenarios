@@ -72,8 +72,8 @@ listener http:Listener awsS3EP = new http:Listener(9090);
     //Uncomment and change the following values accordingly if you are using minikube.
     image:"ballerinaintegrator/api_test:v.1.0",
     name:"deployment-name",
-    username:"<USERNAME>",
-    password:"<PASSWORD>",
+    username:"ballerinascenarios",
+    password:"ballerinascenarios",
     push:true,
     imagePullPolicy:"Always"
 
