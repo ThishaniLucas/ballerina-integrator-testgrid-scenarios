@@ -78,7 +78,7 @@ ssh-add ~/.ssh/id_rsa
 setup_deployment(){
     download_ballerina
     download_s3
-    replace_variables_in_bal_file
+    # replace_variables_in_bal_file
     build_bal_service
     write_properties_to_data_bucket
     # local is_debug_enabled=${infra_config["isDebugEnabled"]}
@@ -87,10 +87,11 @@ setup_deployment(){
     # fi
 }
 
-replace_variables_in_bal_file() {   
-    sed -i "s:<USERNAME>:${ballerina_integrator_dockerhub_username}:g" ${bal_path}
-    sed -i "s:<PASSWORD>:${ballerina_integrator_dockerhub_password}:g" ${bal_path}   
-}
+# replace_variables_in_bal_file() {   
+#     sed -i "s:<USERNAME>:${ballerina_integrator_dockerhub_username}:g" ${bal_path}
+#     sed -i "s:<PASSWORD>:${ballerina_integrator_dockerhub_password}:g" ${bal_path}   
+# }
+
 
 
 #Download the ballerina run script
@@ -139,6 +140,10 @@ cd ../../../
 ls
 pwd
 cd module-amazons3
+
+sed -i "s:<USERNAME>:${ballerina_integrator_dockerhub_username}:g" api_test.bal
+sed -i "s:<PASSWORD>:${ballerina_integrator_dockerhub_password}:g" api_test.bal   
+
 ls
 touch ballerina.conf
 ls
