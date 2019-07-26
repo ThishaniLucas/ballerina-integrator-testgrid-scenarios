@@ -144,7 +144,7 @@ ls
 cd ../../../
 pwd
 
-# cp ./target/api_test.balx ./target/kubernetes/api_test/docker
+cp ./target/api_test.balx ./target/kubernetes/api_test/docker
 
 cd kubernetes
 # Run generated docker 
