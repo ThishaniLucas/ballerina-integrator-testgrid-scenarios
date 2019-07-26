@@ -75,12 +75,6 @@ ssh-add ~/.ssh/id_rsa
 
 }
 
-replace_variables_in_bal_file() {   
-    sed -i "s:<USERNAME>:${ballerina_integrator_dockerhub_username}:g" ${bal_path}
-    sed -i "s:<PASSWORD>:${ballerina_integrator_dockerhub_password}:g" ${bal_path}   
-}
-
-
 setup_deployment(){
     download_ballerina
     download_s3
@@ -92,6 +86,12 @@ setup_deployment(){
     #     print_kubernetes_debug_info
     # fi
 }
+
+replace_variables_in_bal_file() {   
+    sed -i "s:<USERNAME>:${ballerina_integrator_dockerhub_username}:g" ${bal_path}
+    sed -i "s:<PASSWORD>:${ballerina_integrator_dockerhub_password}:g" ${bal_path}   
+}
+
 
 #Download the ballerina run script
 download_ballerina(){
