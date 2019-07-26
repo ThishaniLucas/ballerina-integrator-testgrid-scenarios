@@ -165,7 +165,7 @@ kubectl apply -f ./api_test --namespace=${cluster_namespace}
 # pwd
 # docker build -f Dockerfile -t kubernetes:v.1.0 .
 
-sleep 15m
+
 }
 
 write_properties_to_data_bucket() {
