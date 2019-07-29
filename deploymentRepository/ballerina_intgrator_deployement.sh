@@ -179,10 +179,23 @@ cd ../../../
 cd kubernetes
 # Run generated docker 
 kubectl apply -f ./api_test --namespace=${cluster_namespace}
-kubectl get pods --namespace=${cluster_namespace}
+
+POD_NAME=$(kubectl get pods --namespace=${cluster_namespace}| grep NAME:)
+echo "${POD_NAME}"
+
+
+# POD_HOST=$(kubectl get pod $POD_NAME --template={{.status.podIP}})
+# echo "${POD_HOST}"
+
+
+POD_IP=$(kubectl describe pod ${POD_NAME}| grep IP:)
+echo "${POD_IP}"
+
+
+
 
 # kubectl apply -f /testgrid/testgrid-home/jobs/kasunA-ballerina-integrator-k8s/kasunA-ballerina-integrator-k8s_deployment_CentOS-7.5_MySQL-5.7_run67/workspace/DeploymentRepository/module-amazons3/target/kubernetes/api_test --namespace=${cluster_namespace}
-kubectl get pods -o json
+# kubectl get pods -o json
 # cd ../
 # cp api_test.balx ./target/kubernetes/api_test/docker
 # echo 'check file>>>>>>>>>>>>>'
