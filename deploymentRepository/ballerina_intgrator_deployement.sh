@@ -209,9 +209,9 @@ write_properties_to_data_bucket() {
         echo "ExternalIP: ${external_ip}"
         echo "NodePort: ${node_port}"
 
-    uri = "http://${external_ip}:${node_port}/amazons3/Ballerina_Bucket" 
-    echo ${uri}
-    curl -v -X POST "${uri}"
+    # uri = "http://${external_ip}:${node_port}/amazons3/Ballerina_Bucket" 
+    # echo ${uri}
+    curl -v -X POST "http://${external_ip}:${node_port}/amazons3/Ballerina_Bucket"
 
     # fi
 }
