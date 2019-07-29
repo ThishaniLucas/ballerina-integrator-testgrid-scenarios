@@ -84,7 +84,7 @@ setup_deployment(){
     # replace_variables_in_bal_file
     build_bal_service
     write_properties_to_data_bucket
-    run_test
+    # run_test
     # local is_debug_enabled=${infra_config["isDebugEnabled"]}
     # if [ "${is_debug_enabled}" = "true" ]; then
     #     print_kubernetes_debug_info
@@ -208,13 +208,23 @@ write_properties_to_data_bucket() {
     # if [ "${is_debug_enabled}" = "true" ]; then
         echo "ExternalIP: ${external_ip}"
         echo "NodePort: ${node_port}"
+
+    uri = "http://${external_ip}:${node_port}/amazons3/Ballerina_Bucket" 
+    echo ${uri}
+    curl -v -X POST "${uri}"
+
     # fi
 }
-run_test(){
 
-    curl -v -X POST "http://${external_ip}:${node_port}/amazons3/Ballerina_Bucket"
+# run_test(){
 
-}
+#     echo "ExternalIP: ${external_ip}"
+#     echo "NodePort: ${node_port}"
+#     uri = "http://${external_ip}:${node_port}/amazons3/Ballerina_Bucket" 
+#     echo ${uri}
+#     curl -v -X POST "${uri}"
+
+# }
 
 
 setup_deployment
