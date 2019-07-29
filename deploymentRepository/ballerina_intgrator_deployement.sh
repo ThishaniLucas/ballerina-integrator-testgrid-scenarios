@@ -40,9 +40,12 @@ get_property() {
     cat $prop_file | grep $key | tail -n 1 | cut -d'=' -f2
 }
 
+# ballerina_integrator_aws_s3_access_key=$(get_property $input_dir/infrastructure.properties ballerina_integrator_aws_s3_access_key)
+# ballerina_integrator_aws_s3_secret_key=$(get_property $input_dir/infrastructure.properties ballerina_integrator_aws_s3_secret_key)
+
+
 ballerina_integrator_aws_s3_access_key=$(get_property $input_dir/infrastructure.properties ballerina_integrator_aws_s3_access_key)
 ballerina_integrator_aws_s3_secret_key=$(get_property $input_dir/infrastructure.properties ballerina_integrator_aws_s3_secret_key)
-
 
 ballerina_integrator_dockerhub_username=$(get_property $input_dir/infrastructure.properties dockerhub_ballerina_scenarios_username)
 ballerina_integrator_dockerhub_password=$(get_property $input_dir/infrastructure.properties dockerhub_ballerina_scenarios_password)
@@ -81,6 +84,7 @@ setup_deployment(){
     # replace_variables_in_bal_file
     build_bal_service
     write_properties_to_data_bucket
+    run_test
     # local is_debug_enabled=${infra_config["isDebugEnabled"]}
     # if [ "${is_debug_enabled}" = "true" ]; then
     #     print_kubernetes_debug_info
@@ -144,8 +148,10 @@ ls
 touch ballerina.conf
 ls
 chmod -R 744 ballerina.conf
-echo "ballerina_integrator_aws_s3_access_key" >> ~/ballerina.conf
-echo "ballerina_integrator_aws_s3_secret_key" >> ~/ballerina.conf
+
+
+echo "ACCESS_KEY_ID=" $ballerina_integrator_aws_s3_access_key >> ~/ballerina.conf
+echo "SECRET_ACCESS_KEY=" $ballerina_integrator_aws_s3_secret_key >> ~/ballerina.conf
 
 ls
 echo "cat balerina.conf"
@@ -204,6 +210,12 @@ write_properties_to_data_bucket() {
         echo "NodePort: ${node_port}"
     # fi
 }
+run_test(){
+
+    curl -v -X POST "http://${external_ip}:${node_port}/amazons3/Ballerina_Bucket"
+
+}
 
 
 setup_deployment
+
