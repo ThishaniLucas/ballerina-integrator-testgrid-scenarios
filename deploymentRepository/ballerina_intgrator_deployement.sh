@@ -179,18 +179,17 @@ cd ../../../
 cd kubernetes
 # Run generated docker 
 kubectl apply -f ./api_test --namespace=${cluster_namespace}
-
-POD_NAME=$(kubectl get pods --namespace=${cluster_namespace}| grep NAME:)
-echo "${POD_NAME}"
-
+# kubectl get pods --namespace=${cluster_namespace}
 
 # POD_HOST=$(kubectl get pod $POD_NAME --template={{.status.podIP}})
 # echo "${POD_HOST}"
 
+# kubectl get pod -o jsonpath="{.items[0].status.hostIP}"
+HOST_IP=$(kubectl get pod -o jsonpath="{.items[0].status.hostIP}")
+echo "${HOST_IP}"
 
-POD_IP=$(kubectl describe pod ${POD_NAME}| grep IP:)
+POD_IP=$(kubectl get pod -o jsonpath="{.items[0].status.podIP}")
 echo "${POD_IP}"
-
 
 
 
@@ -224,7 +223,8 @@ write_properties_to_data_bucket() {
 
     # uri = "http://${external_ip}:${node_port}/amazons3/Ballerina_Bucket" 
     # echo ${uri}
-    curl -v -X POST "http://${external_ip}:${node_port}/amazons3/Ballerina_Bucket"
+    curl -v -X POST "http://${HOST_IP}:${node_port}/amazons3/Ballerina_Bucket"
+    curl -v -X POST "http://${POD_IP}:${node_port}/amazons3/Ballerina_Bucket"
 
     # fi
 }
