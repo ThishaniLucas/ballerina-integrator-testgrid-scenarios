@@ -77,4 +77,4 @@ echo "output directory : ${OUTPUT_DIR}"
 
 export DATA_BUCKET_LOCATION=${INPUT_DIR}
 
-sleep 20m
+
