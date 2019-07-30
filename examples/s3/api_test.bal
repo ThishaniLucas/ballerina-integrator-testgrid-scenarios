@@ -73,7 +73,7 @@ listener http:Listener awsS3EP = new http:Listener(9090);
     //image: "kubernetes:v.1.0"
     //Uncomment and change the following values accordingly if you are using minikube.
     image:"ballerinaintegrator/api_test:v.1.0",
-    name:"deployment-name",
+    name:"api_test",
     username:"ballerinaintegrator",
     password:"ballerinaintegrator",
     push:true,
