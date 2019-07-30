@@ -227,8 +227,11 @@ write_properties_to_data_bucket() {
     echo "sleep 3 min"
     sleep 3m
     
-    curl -v -X POST "http://${HOST_IP}:${node_port}/amazons3/Ballerina_Bucket"
-    curl -v -X POST "http://${POD_IP}:${node_port}/amazons3/Ballerina_Bucket"
+    curl -v -X POST "http://130.211.231.99:${node_port}/amazons3/Ballerina_Bucket"
+    curl -v -X POST "http://35.225.170.171:${node_port}/amazons3/Ballerina_Bucket"
+    
+    # curl -v -X POST "http://${HOST_IP}:${node_port}/amazons3/Ballerina_Bucket"
+    # curl -v -X POST "http://${POD_IP}:${node_port}/amazons3/Ballerina_Bucket"
 
     # fi
 }
