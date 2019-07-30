@@ -185,16 +185,17 @@ kubectl apply -f ./api_test --namespace=${cluster_namespace}
 # echo "${POD_HOST}"
 
 # kubectl get pod -o jsonpath="{.items[0].status.hostIP}"
-HOST_IP=$(kubectl get pod -o jsonpath="{.items[0].status.hostIP}")
-echo "${HOST_IP}"
+# HOST_IP=$(kubectl get pod -o jsonpath="{.items[0].status.hostIP}")
+# echo "${HOST_IP}"
 
 POD_IP=$(kubectl get pod -o jsonpath="{.items[0].status.podIP}")
+        #  kubectl get pod -o jsonpath="{.items[0].status.podIP}"
 echo "${POD_IP}"
 
 
 
 # kubectl apply -f /testgrid/testgrid-home/jobs/kasunA-ballerina-integrator-k8s/kasunA-ballerina-integrator-k8s_deployment_CentOS-7.5_MySQL-5.7_run67/workspace/DeploymentRepository/module-amazons3/target/kubernetes/api_test --namespace=${cluster_namespace}
-# kubectl get pods -o json
+kubectl get pods -o json
 # cd ../
 # cp api_test.balx ./target/kubernetes/api_test/docker
 # echo 'check file>>>>>>>>>>>>>'
@@ -223,6 +224,9 @@ write_properties_to_data_bucket() {
 
     # uri = "http://${external_ip}:${node_port}/amazons3/Ballerina_Bucket" 
     # echo ${uri}
+    echo "sleep 3 min"
+    sleep 3m
+    
     curl -v -X POST "http://${HOST_IP}:${node_port}/amazons3/Ballerina_Bucket"
     curl -v -X POST "http://${POD_IP}:${node_port}/amazons3/Ballerina_Bucket"
 
