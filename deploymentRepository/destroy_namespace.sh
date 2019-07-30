@@ -25,8 +25,8 @@ set -o xtrace
 #
 
 #definitions
-INPUT_DIR=$2
-source $INPUT_DIR/deployment.properties
+OUTPUT_DIR=$4
+source $OUTPUT_DIR/deployment.properties
 
 function delete_resources() {
   echo "running destroy.sh"
