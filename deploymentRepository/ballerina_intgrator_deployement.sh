@@ -195,7 +195,7 @@ echo "${POD_IP}"
 
 
 # kubectl apply -f /testgrid/testgrid-home/jobs/kasunA-ballerina-integrator-k8s/kasunA-ballerina-integrator-k8s_deployment_CentOS-7.5_MySQL-5.7_run67/workspace/DeploymentRepository/module-amazons3/target/kubernetes/api_test --namespace=${cluster_namespace}
-kubectl get pods -o json
+# kubectl get pods -o json
 # cd ../
 # cp api_test.balx ./target/kubernetes/api_test/docker
 # echo 'check file>>>>>>>>>>>>>'
@@ -209,6 +209,36 @@ kubectl get pods -o json
 
 
 }
+
+#This function constantly check whether the deployments are correctly deployed in the cluster
+function readiness_deployments(){
+    start=`date +%s`
+    i=0;
+    # todo add a terminal condition/timeout.
+    TIMEOUT=600 # 10mins
+    for ((i=0; i<$dep_num; i++)) ; do
+        total_count=$((TIMEOUT/5))
+        echo $total_count
+        count=0
+        echo Running kubectl get deployments -n $namespace ${dep[$i]} -o jsonpath='{.status.conditions[?(@.type=="Available")].status}'
+        until [[ $count -ge $total_count ]]
+        do
+            deployment_status=$(kubectl get deployments -n $namespace ${dep[$i]} -o jsonpath='{.status.conditions[?(@.type=="Available")].status}')
+            [[ "$deployment_status" == "True" ]] && break
+            count=$(($count+1))
+            sleep 5;
+        done
+        [[ "$deployment_status" != "True" ]] && echo "[ERROR] timeout while waiting for deployment, '${dep[$i]}', in \
+        namespace, '$namespace', to succeed." && exit 78
+
+    done
+
+    end=`date +%s`
+    runtime=$((end-start))
+    echo "Deployment \"${dep}\" got ready in ${runtime} seconds."
+    echo
+}
+
 
 write_properties_to_data_bucket() {
     local external_ip=$(kubectl get nodes -o=jsonpath='{.items[0].status.addresses[?(@.type=="ExternalIP")].address}')
