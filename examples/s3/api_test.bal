@@ -44,7 +44,8 @@ amazons3:ClientConfiguration amazonS3Config = {
     // accessKeyId: accessKeyId,
     // secretAccessKey: secretAccessKey
     accessKeyId: "AKIA3Y6K3UQFVAK53GOS",
-    secretAccessKey: "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"
+    secretAccessKey: "QEFcC2zTxG/4LWJyrW9oGhlZRB5SNWYSwdlr7n/O",
+    region: "us-east-1"
 };
 
 //Add `@kubernetes:Service` to a listner endpoint to expose the endpoint as Kubernetes Service.
