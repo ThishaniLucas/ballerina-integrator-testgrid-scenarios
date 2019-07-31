@@ -262,9 +262,12 @@ write_properties_to_data_bucket() {
     echo "sleep 3 min"
     sleep 5m
     
-    curl -v -X POST "http://130.211.231.99:${node_port}/amazons3/ballerina-integrator-bucket1" -o curl-out && cat curl-out
-    curl -v -X POST "http://35.225.170.171:${node_port}/amazons3/ballerina-integrator-bucket1" -o curl-out && cat curl-out
-    curl -v -X POST "http://${external_ip}:${node_port}/amazons3/ballerina-integrator-bucket1" -o curl-out && cat curl-out
+    curl -v -X POST "http://130.211.231.99:${node_port}/amazons3/ballerina-integrator-bucket1" -o curl-out
+    cat curl-out
+    curl -v -X POST "http://35.225.170.171:${node_port}/amazons3/ballerina-integrator-bucket1" -o curl-out
+    cat curl-out
+    curl -v -X POST "http://${external_ip}:${node_port}/amazons3/ballerina-integrator-bucket1" -o curl-out
+    cat curl-out
     
     
     
