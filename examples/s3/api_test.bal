@@ -41,11 +41,11 @@ string secretAccessKey = config:getAsString("SECRET_ACCESS_KEY");
 
 // Create Amazons3 client configration with the above accesskey and secretKey values.
 amazons3:ClientConfiguration amazonS3Config = {
-    // accessKeyId: accessKeyId,
-    // secretAccessKey: secretAccessKey
-    accessKeyId: "AKIA3Y6K3UQFVAK53GOS",
-    secretAccessKey: "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",
-    region: "us-east-1"
+    accessKeyId: accessKeyId,
+    secretAccessKey: secretAccessKey
+    // accessKeyId: "AKIA3Y6K3UQFVAK53GOS",
+    // secretAccessKey: "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",
+    // region: "us-east-1"
 };
 
 //Add `@kubernetes:Service` to a listner endpoint to expose the endpoint as Kubernetes Service.
