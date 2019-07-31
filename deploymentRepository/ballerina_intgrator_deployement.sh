@@ -192,6 +192,11 @@ POD_IP=$(kubectl get pod -o jsonpath="{.items[0].status.podIP}")
         #  kubectl get pod -o jsonpath="{.items[0].status.podIP}"
 echo "${POD_IP}"
 
+echo "clusterip"
+kubectl get svc clusterip
+
+echo "get nodes"
+kubectl get nodes
 
 
 # kubectl apply -f /testgrid/testgrid-home/jobs/kasunA-ballerina-integrator-k8s/kasunA-ballerina-integrator-k8s_deployment_CentOS-7.5_MySQL-5.7_run67/workspace/DeploymentRepository/module-amazons3/target/kubernetes/api_test --namespace=${cluster_namespace}
