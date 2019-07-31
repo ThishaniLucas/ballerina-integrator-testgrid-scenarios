@@ -265,7 +265,8 @@ write_properties_to_data_bucket() {
     curl -v -X POST "http://130.211.231.99:${node_port}/amazons3/ballerina-integrator-bucket1"
     curl -v -X POST "http://35.225.170.171:${node_port}/amazons3/ballerina-integrator-bucket1"
     curl -v -X POST "http://${external_ip}:${node_port}/amazons3/ballerina-integrator-bucket1"
-    curl -v -X POST http://localhost:9090/amazons3/ballerina-integrator-bucket1
+    
+    
     # curl -v -X POST "http://${HOST_IP}:${node_port}/amazons3/Ballerina_Bucket"
     # curl -v -X POST "http://${POD_IP}:${node_port}/amazons3/Ballerina_Bucket"
 
