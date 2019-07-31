@@ -192,9 +192,8 @@ POD_IP=$(kubectl get pod -o jsonpath="{.items[0].status.podIP}")
         #  kubectl get pod -o jsonpath="{.items[0].status.podIP}"
 echo "${POD_IP}"
 
-echo "clusterip"
-kubectl get svc clusterip
-
+echo "get nodes --o wide"
+kubectl get nodes --o wide
 echo "get nodes"
 kubectl get nodes
 
