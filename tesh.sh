@@ -16,8 +16,6 @@ echo "Running test.sh file"
 HOME=`pwd`
 TEST_SCRIPT=test.sh
 
-mvn clean install ballerina_s3_test/Test_api/pom.xml
-
 function usage()
 {
     echo "
@@ -27,6 +25,8 @@ function usage()
     --output-dir      | -o    : output directory for test.sh
     "
 }
+
+mvn clean install ballerina_s3_test/Test_api/pom.xml
 
 optspec=":hiom-:"
 while getopts "$optspec" optchar; do
