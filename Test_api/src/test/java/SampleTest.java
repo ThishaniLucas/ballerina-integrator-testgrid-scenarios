@@ -26,7 +26,7 @@ public class SampleTest {
                 when().
                 post("ballerina-integrator-bucket2");
                 Assert.assertTrue(response.statusCode()==500);
-                Assert.assertTrue(response.body().asString().contains("Your previous request to create the named bucket succeeded and you already own it.."));
+                Assert.assertTrue(response.body().asString().contains("Your previous request to create the named bucket succeeded and you already own it."));
 //        given().
 //        when().
 //        post();
