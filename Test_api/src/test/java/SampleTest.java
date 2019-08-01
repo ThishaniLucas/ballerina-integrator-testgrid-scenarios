@@ -9,6 +9,20 @@ import static io.restassured.RestAssured.given;
 
 public class SampleTest {
 
+    private static final String DEPLOYMENT_PROPERTIES = "deployment.properties";
+
+    Path deployPropsFile = Paths.get(INPUTS_LOCATION + File.separator + DEPLOYMENT_PROPERTIES);
+
+    InputStream input = new FileInputStream((String)deployPropsFile))
+
+    Properties prop = new Properties();
+
+    // load a properties file
+    prop.load(input);
+
+    // get the property value and print it out
+    System.out.println(prop.getProperty("ExternalIP"));
+
     @BeforeTest
     public void init() throws Exception {
         try {
