@@ -13,68 +13,70 @@
 set -o xtrace
 
 echo "Running test.sh file"
-# HOME=`pwd`
-# TEST_SCRIPT=test.sh
+HOME=`pwd`
+TEST_SCRIPT=test.sh
 
-# function usage()
-# {
-#     echo "
-#     Usage bash test.sh --input-dir /workspace/data-bucket.....
-#     Following are the expected input parameters. all of these are optional
-#     --input-dir       | -i    : input directory for test.sh
-#     --output-dir      | -o    : output directory for test.sh
-#     "
-# }
+mvn clean install ballerina_s3_test/Test_api/pom.xml
 
-# optspec=":hiom-:"
-# while getopts "$optspec" optchar; do
-#     case "${optchar}" in
-#         -)
-#             case "${OPTARG}" in
-#                 input-dir)
-#                     val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
-#                     INPUT_DIR=$val
-#                     ;;
-#                 output-dir)
-#                     val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
-#                     OUTPUT_DIR=$val
-#                     ;;
-#                 mvn-opts)
-#                     val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
-#                     MAVEN_OPTS=$val
-#                     ;;
-#                 *)
-#                     usage
-#                     if [ "$OPTERR" = 1 ] && [ "${optspec:0:1}" != ":" ]; then
-#                         echo "Unknown option --${OPTARG}" >&2
-#                     fi
-#                     ;;
-#             esac;;
-#         h)
-#             usage
-#             exit 2
-#             ;;
-#         o)
-#             OUTPUT_DIR=$val
-#             ;;
-#         m)
-#             MVN_OPTS=$val
-#             ;;
-#         i)
-#             INPUT_DIR=$val
-#             ;;
-#         *)
-#             usage
-#             if [ "$OPTERR" != 1 ] || [ "${optspec:0:1}" = ":" ]; then
-#                 echo "Non-option argument: '-${OPTARG}'" >&2
-#             fi
-#             ;;
-#     esac
-# done
+function usage()
+{
+    echo "
+    Usage bash test.sh --input-dir /workspace/data-bucket.....
+    Following are the expected input parameters. all of these are optional
+    --input-dir       | -i    : input directory for test.sh
+    --output-dir      | -o    : output directory for test.sh
+    "
+}
 
-# echo "working Directory : ${HOME}"
-# echo "input directory : ${INPUT_DIR}"
-# echo "output directory : ${OUTPUT_DIR}"
+optspec=":hiom-:"
+while getopts "$optspec" optchar; do
+    case "${optchar}" in
+        -)
+            case "${OPTARG}" in
+                input-dir)
+                    val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
+                    INPUT_DIR=$val
+                    ;;
+                output-dir)
+                    val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
+                    OUTPUT_DIR=$val
+                    ;;
+                mvn-opts)
+                    val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
+                    MAVEN_OPTS=$val
+                    ;;
+                *)
+                    usage
+                    if [ "$OPTERR" = 1 ] && [ "${optspec:0:1}" != ":" ]; then
+                        echo "Unknown option --${OPTARG}" >&2
+                    fi
+                    ;;
+            esac;;
+        h)
+            usage
+            exit 2
+            ;;
+        o)
+            OUTPUT_DIR=$val
+            ;;
+        m)
+            MVN_OPTS=$val
+            ;;
+        i)
+            INPUT_DIR=$val
+            ;;
+        *)
+            usage
+            if [ "$OPTERR" != 1 ] || [ "${optspec:0:1}" = ":" ]; then
+                echo "Non-option argument: '-${OPTARG}'" >&2
+            fi
+            ;;
+    esac
+done
 
-# export DATA_BUCKET_LOCATION=${INPUT_DIR}
+echo "working Directory : ${HOME}"
+echo "input directory : ${INPUT_DIR}"
+echo "output directory : ${OUTPUT_DIR}"
+
+export DATA_BUCKET_LOCATION=${INPUT_DIR}
 
