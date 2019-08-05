@@ -4,30 +4,47 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+
 
 import static io.restassured.RestAssured.given;
 
 public class SampleTest {
+//
+//    private static final String DEPLOYMENT_PROPERTIES = "deployment.properties";//
+//    Path deployPropsFile = Paths.get(INPUTS_LOCATION + File.separator + DEPLOYMENT_PROPERTIES);//
+//    InputStream input = new FileInputStream((String)deployPropsFile))//
+//    Properties prop = new Properties();//
+//    // load a properties file//    prop.load(input);
+////    // get the property value and print it out
+//    System.out.println(prop.getProperty("ExternalIP"));
 
-    private static final String DEPLOYMENT_PROPERTIES = "deployment.properties";
+//    try
+//
+    (InputStream input = new FileInputStream("deployment.properties"))
+    {
+        Properties props =new Properties();
+        props.load(input);
+        System.out.println(props.getProperty("ExternalIP"));
+        System.out.println(props.getProperty("NodePort"));
+//    }
 
-    Path deployPropsFile = Paths.get(INPUTS_LOCATION + File.separator + DEPLOYMENT_PROPERTIES);
+//    catch(IOException ex)
+//    {
+//        ex.printStackTrace();
+//    }
 
-    InputStream input = new FileInputStream((String)deployPropsFile))
-
-    Properties prop = new Properties();
-
-    // load a properties file
-    prop.load(input);
-
-    // get the property value and print it out
-    System.out.println(prop.getProperty("ExternalIP"));
 
     @BeforeTest
     public void init() throws Exception {
         try {
 
-            RestAssured.baseURI = "http://0.0.0.0:9090/amazons3/";
+            //"http://0.0.0.0:9090/amazons3/"
+            RestAssured.baseURI = "http://ExternalIP:NodePort/amazons3/";
         } catch (Exception e) {
             e.printStackTrace();
         }
