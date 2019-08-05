@@ -26,7 +26,7 @@ public class SampleTest {
 //    try
 //
     (InputStream input = new FileInputStream("deployment.properties"))
-    {
+//    {
         Properties props =new Properties();
         props.load(input);
         System.out.println(props.getProperty("ExternalIP"));
