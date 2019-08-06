@@ -13,6 +13,9 @@
 set -o xtrace
 
 echo "Running test.sh file"
+echo "mvn version"
+mvn --version	
+
 HOME=`pwd`
 TEST_SCRIPT=test.sh
 
