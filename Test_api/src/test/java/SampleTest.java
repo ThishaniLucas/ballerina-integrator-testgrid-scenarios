@@ -1,4 +1,3 @@
-
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -9,8 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-
-
 
 import static io.restassured.RestAssured.given;
 
@@ -32,13 +29,12 @@ catch(IOException ex)
     public SampleTest() throws FileNotFoundException, IOException {
     }
 
-
     @BeforeTest
     public void init() throws Exception {
         try {
-            RestAssured.baseURI = "http://ExternalIP:NodePort/amazons3/";
+                RestAssured.baseURI = "http://ExternalIP:NodePort/amazons3/";
         } catch (Exception e) {
-            e.printStackTrace();
+                e.printStackTrace();
         }
     }
 
@@ -56,10 +52,9 @@ catch(IOException ex)
     public void deletebucket_Test() {
         Response response=
                 given().
-                        when().
-                        delete("http://ExternalIP:NodePort/amazons3/ballerina-integrator-bucket19");
-        Assert.assertTrue(response.statusCode()==200);
+                when().
+                delete("http://ExternalIP:NodePort/amazons3/ballerina-integrator-bucket19");
+                Assert.assertTrue(response.statusCode()==200);
 
     }
 }
-
