@@ -29,7 +29,7 @@ catch(IOException ex)
         ex.printStackTrace();
     }
 
-    public SampleTest() throws FileNotFoundException {
+    public SampleTest() throws FileNotFoundException, IOException {
     }
 
 
@@ -62,3 +62,4 @@ catch(IOException ex)
 
     }
 }
+
