@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.nio.file.Path;
+import java.sql.SQLOutput;
 import java.util.Properties;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +16,8 @@ import static io.restassured.RestAssured.given;
 
 public class SampleTest {
 
-    private static final String INPUTS_LOCATION = System.getProperty("data.bucket.location");
+    //private static final String INPUTS_LOCATION = System.getProperty("data.bucket.location");
+    private static final String INPUTS_LOCATION = System.getenv("input_dir");
 
     private static String externalip ;
     private static String nodeport ;
@@ -32,6 +34,7 @@ public class SampleTest {
         nodeport = props.getProperty("NodePort");
         System.out.println(externalip);
         System.out.println(nodeport);
+        System.out.println(INPUTS_LOCATION);
     }
 
     @BeforeTest
