@@ -14,20 +14,24 @@ set -o xtrace
 
 echo "Running test.sh file"
 echo "mvn version"
-mvn --version	
+# mvn --version	
 
 HOME=`pwd`
 TEST_SCRIPT=test.sh
 
-function usage()
-{
-    echo "
-    Usage bash test.sh --input-dir /workspace/data-bucket.....
-    Following are the expected input parameters. all of these are optional
-    --input-dir       | -i    : input directory for test.sh
-    --output-dir      | -o    : output directory for test.sh
-    "
-}
+# function usage()
+# {
+#     echo "
+#     Usage bash test.sh --input-dir /workspace/data-bucket.....
+#     Following are the expected input parameters. all of these are optional
+#     --input-dir       | -i    : input directory for test.sh
+#     --output-dir      | -o    : output directory for test.sh
+#     "
+# }
+
+echo "working Directory : ${HOME}"
+echo "input directory : ${INPUT_DIR}"
+echo "output directory : ${OUTPUT_DIR}"
 
 mvn clean install ballerina_s3_test/Test_api/pom.xml
 
@@ -77,9 +81,9 @@ while getopts "$optspec" optchar; do
     esac
 done
 
-echo "working Directory : ${HOME}"
-echo "input directory : ${INPUT_DIR}"
-echo "output directory : ${OUTPUT_DIR}"
+# echo "working Directory : ${HOME}"
+# echo "input directory : ${INPUT_DIR}"
+# echo "output directory : ${OUTPUT_DIR}"
 
 export DATA_BUCKET_LOCATION=${INPUT_DIR}
 
