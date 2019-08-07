@@ -5,20 +5,25 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.Properties;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.io.File;
 
 import static io.restassured.RestAssured.given;
 
-public class SampleTest {
-       
+public class SampleTest {    
+    
     private static String externalip ;
     private static String nodeport ;
 
     static void test()  throws Exception {
 
         private static final String INPUTS_LOCATION = System.getProperty("data.bucket.location");
+        
         System.out.println();
-        InputStream input = new FileInputStream("INPUTS_LOCATION/deployment.properties");
+        InputStream input = new FileInputStream(INPUTS_LOCATION+"/deployment.properties");
         Properties props =new Properties();
         props.load(input);
         externalip = props.getProperty("ExternalIP");
