@@ -34,7 +34,7 @@ public class SampleTest {
         nodeport = props.getProperty("NodePort");
         System.out.println(externalip);
         System.out.println(nodeport);
-        System.out.println(INPUTS_LOCATION);
+        System.out.println("************INPUTS_LOCATION******************"+INPUTS_LOCATION);
     }
 
     @BeforeTest
