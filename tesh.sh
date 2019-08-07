@@ -37,10 +37,9 @@ echo "working Directory : ${HOME}"
 echo "input directory : ${INPUT_DIR}"
 echo "output directory : ${OUTPUT_DIR}"
 
-cd ../../
-ls
-
-mvn clean install ballerina_s3_test/Test_api/pom.xml
+git clone https://github.com/KasunAratthanage/ballerina_s3_test
+cd Test_api
+mvn clean install 
 
 optspec=":hiom-:"
 while getopts "$optspec" optchar; do
