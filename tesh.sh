@@ -12,6 +12,9 @@
 
 set -o xtrace
 
+INPUT_DIR=$2
+OUTPUT_DIR=$4
+
 echo "Running test.sh file"
 echo "mvn version"
 # mvn --version	
@@ -34,7 +37,7 @@ echo "working Directory : ${HOME}"
 echo "input directory : ${INPUT_DIR}"
 echo "output directory : ${OUTPUT_DIR}"
 
-cd ../
+cd ../../
 ls
 
 mvn clean install ballerina_s3_test/Test_api/pom.xml
