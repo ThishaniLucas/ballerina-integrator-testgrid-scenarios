@@ -13,16 +13,18 @@ import java.io.File;
 
 import static io.restassured.RestAssured.given;
 
-public class SampleTest {    
-    
+public class SampleTest {
+
+    private static final String INPUTS_LOCATION = System.getProperty("data.bucket.location");
+
     private static String externalip ;
     private static String nodeport ;
 
     static void test()  throws Exception {
 
-        private static final String INPUTS_LOCATION = System.getProperty("data.bucket.location");
-        
+
         System.out.println();
+        //InputStream input = new FileInputStream("/home/kasun/Documents/Test_grid/Test_api/src/test/java/deployment.properties");
         InputStream input = new FileInputStream(INPUTS_LOCATION+"/deployment.properties");
         Properties props =new Properties();
         props.load(input);
