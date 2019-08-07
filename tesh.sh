@@ -37,6 +37,8 @@ echo "working Directory : ${HOME}"
 echo "input directory : ${INPUT_DIR}"
 echo "output directory : ${OUTPUT_DIR}"
 
+export input_dir="${INPUT_DIR}"
+
 git clone https://github.com/KasunAratthanage/ballerina_s3_test
 cd Test_api
 mvn clean install 
