@@ -4,57 +4,57 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 import static io.restassured.RestAssured.given;
 
 public class SampleTest {
+       
+    private static String externalip ;
+    private static String nodeport ;
 
-    try(InputStream input = new FileInputStream("deployment.properties"))
-    {
+    static void test()  throws Exception {
+
+        private static final String INPUTS_LOCATION = System.getProperty("data.bucket.location");
+        System.out.println();
+        InputStream input = new FileInputStream("INPUTS_LOCATION/deployment.properties");
         Properties props =new Properties();
         props.load(input);
-        System.out.println(props.getProperty("ExternalIP"));
-        System.out.println(props.getProperty("NodePort"));
-    }
-
-catch(IOException ex)
-    {
-        ex.printStackTrace();
-    }
-
-    public SampleTest() throws FileNotFoundException, IOException {
+        externalip = props.getProperty("ExternalIP");
+        nodeport = props.getProperty("NodePort");
+        System.out.println(externalip);
+        System.out.println(nodeport);
     }
 
     @BeforeTest
     public void init() throws Exception {
         try {
-                RestAssured.baseURI = "http://ExternalIP:NodePort/amazons3/";
+        test();
+        RestAssured.baseURI = "http://"+ externalip +":"+ nodeport+"/amazons3/";
+
         } catch (Exception e) {
                 e.printStackTrace();
         }
     }
 
     @Test
-    public void createbucket_Test() {
+    public void createbucke_Test() {
         Response response=
         given().
                 when().
-                post("ballerina-integrator-bucket19");
+                post("ballerina-integrator-bucket22");
                 Assert.assertTrue(response.statusCode()==200);
-
     }
 
-    @Test (dependsOnMethods = {"createbucket_Test"})
+    @Test(dependsOnMethods = {"createbucke_Test"})
     public void deletebucket_Test() {
+
         Response response=
                 given().
                 when().
-                delete("http://ExternalIP:NodePort/amazons3/ballerina-integrator-bucket19");
+                delete("ballerina-integrator-bucket22");
                 Assert.assertTrue(response.statusCode()==200);
-
     }
 }
+
