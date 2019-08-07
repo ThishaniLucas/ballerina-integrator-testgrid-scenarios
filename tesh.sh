@@ -17,6 +17,7 @@ echo "mvn version"
 # mvn --version	
 
 HOME=`pwd`
+
 TEST_SCRIPT=test.sh
 
 # function usage()
@@ -32,6 +33,9 @@ TEST_SCRIPT=test.sh
 echo "working Directory : ${HOME}"
 echo "input directory : ${INPUT_DIR}"
 echo "output directory : ${OUTPUT_DIR}"
+
+cd ../
+ls
 
 mvn clean install ballerina_s3_test/Test_api/pom.xml
 
