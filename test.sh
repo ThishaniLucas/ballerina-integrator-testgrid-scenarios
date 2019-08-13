@@ -97,5 +97,5 @@ mvn clean install
 
 echo "Copying surefire-reports to ${OUTPUT_DIR}"
 
-mkdir -p ${OUTPUT_DIR}
-find ./* -name "surefire-reports" -exec cp --parents -r {} ${OUTPUT_DIR} \;
+mkdir -p ${OUTPUT_DIR}/scenarios/s3-tests
+find ./* -name "surefire-reports" -exec cp --parents -r {} ${OUTPUT_DIR}/scenarios/s3-tests \;
