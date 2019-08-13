@@ -36,7 +36,7 @@ function create_endpoints(){
     echo "external_ip=$external_ip" >> $OUTPUT_DIR/deployment.properties
     echo "TestGroup=$TestGroup" >> $OUTPUT_DIR/deployment.properties
     echo "NodePort=$NodePort" >> $OUTPUT_DIR/deployment.properties
-    echo "NodePort=$namespace" >> $OUTPUT_DIR/deployment.properties
+    echo "namespace=$namespace" >> $OUTPUT_DIR/deployment.properties
 }   
 
 create_endpoints
