@@ -56,7 +56,7 @@ public class SampleTest {
         Response response=
         given().
                 when().
-                post("http://"+ externalip + nodeport+"/amazons3/ballerina-integrator-bucket25");
+                post("http://"+ externalip +":"+ nodeport+"/amazons3/ballerina-integrator-bucket25");
                 Assert.assertTrue(response.statusCode()==200);
     }
 
@@ -66,7 +66,7 @@ public class SampleTest {
         Response response=
                 given().
                 when().
-                delete("http://"+ externalip + nodeport+"/amazons3/ballerina-integrator-bucket25");
+                delete("http://"+ externalip +":"+ nodeport+"/amazons3/ballerina-integrator-bucket25");
                 Assert.assertTrue(response.statusCode()==200);
     }
 }
