@@ -21,6 +21,7 @@ public class SampleTest {
 
     private static String externalip ;
     private static String nodeport ;
+    private static String namespace;
 
     static void test()  throws Exception {
 
@@ -32,8 +33,10 @@ public class SampleTest {
         props.load(input);
         externalip = props.getProperty("ExternalIP");
         nodeport = props.getProperty("NodePort");
+        namespace = props.getProperty("namespace");
         System.out.println(externalip);
         System.out.println(nodeport);
+        System.out.println(namespace);
         System.out.println("************INPUTS_LOCATION******************"+INPUTS_LOCATION);
     }
 
