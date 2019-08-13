@@ -39,10 +39,6 @@ echo "output directory : ${OUTPUT_DIR}"
 
 export input_dir="${INPUT_DIR}"
 
-git clone https://github.com/KasunAratthanage/ballerina_s3_test
-cd Test_api
-mvn clean install 
-
 optspec=":hiom-:"
 while getopts "$optspec" optchar; do
     case "${optchar}" in
@@ -95,3 +91,9 @@ done
 
 export DATA_BUCKET_LOCATION=${INPUT_DIR}
 
+mvn clean install
+
+echo "Copying surefire-reports to ${OUTPUT_DIR}"
+
+mkdir -p ${OUTPUT_DIR}
+find ./* -name "surefire-reports" -exec cp --parents -r {} ${OUTPUT_DIR} \;
