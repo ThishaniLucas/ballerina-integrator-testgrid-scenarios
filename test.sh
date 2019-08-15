@@ -91,7 +91,7 @@ done
 
 export DATA_BUCKET_LOCATION=${INPUT_DIR}
 
-git clone https://github.com/KasunAratthanage/ballerina_s3_test
+#git clone https://github.com/KasunAratthanage/ballerina_s3_test
 cd Test_api
 mvn clean install
 
