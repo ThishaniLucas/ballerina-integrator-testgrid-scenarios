@@ -37,7 +37,7 @@ echo "My INPUTS_DIR is $input_dir"
 get_property() {
     prop_file=$1
     key=$2
-    cat $prop_file | grep $key | tail -n 1 | cut -d'=' -f2
+#     cat $prop_file | grep $key | tail -n 1 | cut -d'=' -f2
 }
 
 # ballerina_integrator_aws_s3_access_key=$(get_property $input_dir/infrastructure.properties ballerina_integrator_aws_s3_access_key)
@@ -150,8 +150,8 @@ ls
 chmod -R 744 ballerina.conf
 
 
-echo "ACCESS_KEY_ID=" $ballerina_integrator_aws_s3_access_key >> ~/ballerina.conf
-echo "SECRET_ACCESS_KEY=" $ballerina_integrator_aws_s3_secret_key >> ~/ballerina.conf
+# echo "ACCESS_KEY_ID=" $ballerina_integrator_aws_s3_access_key >> ~/ballerina.conf
+# echo "SECRET_ACCESS_KEY=" $ballerina_integrator_aws_s3_secret_key >> ~/ballerina.conf
 
 ls
 echo "cat balerina.conf"
