@@ -1,9 +1,0 @@
-{
-
-testgridYamlLocation: testgrid_is.yaml, 
-infrastructureRepository: infrastructureRepository/,
-deploymentRepository: deploymentRepository/,
-scenarioTestsRepository: scenarioTestsRepository/,
-
-}
-
