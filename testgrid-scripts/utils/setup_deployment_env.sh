@@ -23,11 +23,9 @@ trap propagate_cleanup_properties EXIT
 
 setup_deployment_env() {
     local parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
-    local grand_parent_path=$(dirname ${parent_path})
-    . ${grand_parent_path}/util/common_utils.sh
-    . ${grand_parent_path}/util/deployment_utils.sh
+    . ${parent_path}/common_utils.sh
+    . ${parent_path}/deployment_utils.sh
 
-    work_dir=$(pwd)
     declare -g -A infra_config
     cat ${input_dir}/infrastructure.properties
     read_property_file "${input_dir}/infrastructure.properties" infra_config
@@ -44,32 +42,14 @@ setup_deployment_env() {
 
     local ballerina_version_type=${infra_config["BallerinaVersionType"]:-""}
 
-    if [ ${ballerina_version_type:-""} = "LatestSnapshot" ]; then
-        wget https://raw.githubusercontent.com/ballerina-platform/ballerina-lang/master/pom.xml -O ballerinalang-pom.xml
-        local ballerina_version_in_pom=$(grep -oP '(?<=<version>).*?(?=</version>)' ballerinalang-pom.xml  | head -1)
-        echo "Ballerina version in pom: ${ballerina_version_in_pom}"
-        echo "Installing the nightly corresponding to the version: ${ballerina_version_in_pom}"
-        # Install ballerina
-        install_ballerina_nightly ${ballerina_version_in_pom}
-    elif [ "${ballerina_version_type}" = "RC" ]; then
-        local rc_location="${infra_config["RCLocation"]}";
-        if [ "${rc_location}" = "" ]; then
-            echo "RC link not provided!"
-            exit 2
-        fi
-        # This is a temporary solution until wso2/testgrid#218 is fixed
-        local corrected_url=$(sed 's:https\\:https:g' <<< ${rc_location})
-        corrected_url=$(sed 's:http\\:http:g' <<< ${corrected_url})
-        echo "Ballerina download location: ${corrected_url}"
-        install_ballerina_from_link ${corrected_url}
-    else
-        local ballerina_version_in_yaml="${infra_config["BallerinaVersion"]:-""}"
-        if [ "${ballerina_version_in_yaml}" = "" ]; then
-            echo "No information provided regarding the Ballerina version to use! Please add BallerinaVersion into deploymentConfig inputParameters."
-            exit 2
-        fi
-        install_ballerina ${ballerina_version_in_yaml}
+
+    local ballerina_version_in_yaml="${infra_config["BallerinaVersion"]:-""}"
+    if [ "${ballerina_version_in_yaml}" = "" ]; then
+       echo "No information provided regarding the Ballerina version to use! Please add BallerinaVersion into deploymentConfig inputParameters."
+       exit 2
     fi
+    install_ballerina ${ballerina_version_in_yaml}
+
 
     local ballerina_version_cmd_output="$(${ballerina_home}/bin/ballerina version)"
     ballerina_version=$(sed "s:Ballerina ::g" <<< ${ballerina_version_cmd_output})

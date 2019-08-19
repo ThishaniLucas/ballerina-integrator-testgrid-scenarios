@@ -15,18 +15,14 @@
 # specific language governing permissions and limitations
 # under the License.
 
-set -e
+run_test() {
+    local scenario_name=$1;
+    local outpur_directory=$2;
 
-parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
-grand_parent_path=$(dirname ${parent_path})
-. ${grand_parent_path}/utils/test_runner.sh
+    mvn clean install -fae
 
-INPUT_DIR=$2
-OUTPUT_DIR=$4
+    echo "Copying surefire-reports to ${outpur_directory}"
+    mkdir -p ${outpur_directory}/scenarios/${scenario_name}
+    find ./* -name "surefire-reports" -exec cp --parents -r {} ${outpur_directory}/scenarios/${scenario_name} \;
+}
 
-echo "Running s3_test.sh file"
-
-export input_dir="${INPUT_DIR}"
-cd ../../connectors/s3-tests
-
-run_test s3_tests ${OUTPUT_DIR}

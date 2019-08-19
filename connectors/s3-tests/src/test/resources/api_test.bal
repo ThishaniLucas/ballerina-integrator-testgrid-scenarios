@@ -21,6 +21,7 @@ import ballerina/http;
 import ballerina/log;
 import wso2/amazons3;
 import ballerinax/kubernetes;
+//import ballerina/io;
 
 
 
@@ -43,8 +44,8 @@ string secretAccessKey = config:getAsString("SECRET_ACCESS_KEY");
 amazons3:ClientConfiguration amazonS3Config = {
     // accessKeyId: accessKeyId,
     // secretAccessKey: secretAccessKey
-    accessKeyId: "AKIA3Y6K3UQFR3UCLKEC",
-    secretAccessKey: "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"
+    accessKeyId: accessKeyId,
+    secretAccessKey: secretAccessKey
     // region: "us-east-1"
 };
 
@@ -93,6 +94,7 @@ service amazonS3Service on new http:Listener(9090) {
     resource function createBucket(http:Caller caller, http:Request request, string bucketName) {
         // Create AmazonS3 client with the above amazonS3Config.
         amazons3:AmazonS3Client|error amazonS3Client = new(amazonS3Config);
+//io:println("AccessToken: ", accessKeyId);
         // Define new response. 
         http:Response backendResponse = new();
 
