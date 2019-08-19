@@ -31,17 +31,17 @@ deploymentConfig:
       scripts:
         - name: 'deploy1'
           type: SHELL
-          file: testgrid-scripts/s3/ballerina_intgrator_deployement.sh
+          file: testgrid-scripts/s3/s3_deployement.sh
           inputParameters:
             BallerinaVersion: "0.991.0"
             isDebugEnabled: "true"
             TestGroup: "api_test"
         - name: 'create-endpoint'
           type: SHELL
-          file: testgrid-scripts/s3/ballerina_integrator_outputs.sh
+          file: testgrid-scripts/s3/s3_outputs.sh
 scenarioConfigs:
   - testType: TESTNG
     remoteRepository: "https://github.com/ThishaniLucas/ballerina-integrator-testgrid-scenarios.git"
     name: "test.sh"
     description: "scenarios"
-    file: testgrid-scripts/s3/test.sh
+    file: testgrid-scripts/s3/s3_test.sh

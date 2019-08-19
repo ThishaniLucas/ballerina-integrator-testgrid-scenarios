@@ -15,7 +15,7 @@ set -o xtrace
 INPUT_DIR=$2
 OUTPUT_DIR=$4
 
-echo "Running test.sh file"
+echo "Running s3_test.sh file"
 echo "mvn version"
 # mvn --version	
 
@@ -26,10 +26,10 @@ TEST_SCRIPT=test.sh
 # function usage()
 # {
 #     echo "
-#     Usage bash test.sh --input-dir /workspace/data-bucket.....
+#     Usage bash s3_test.sh --input-dir /workspace/data-bucket.....
 #     Following are the expected input parameters. all of these are optional
-#     --input-dir       | -i    : input directory for test.sh
-#     --output-dir      | -o    : output directory for test.sh
+#     --input-dir       | -i    : input directory for s3_test.sh
+#     --output-dir      | -o    : output directory for s3_test.sh
 #     "
 # }
 
