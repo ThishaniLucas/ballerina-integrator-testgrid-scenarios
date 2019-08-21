@@ -13,7 +13,7 @@ infrastructureConfig:
     - name: kubernetes working environment
       description: Provision Infra for running intg tests
       remoteRepository: "https://github.com/ThishaniLucas/ballerina-integrator-testgrid-scenarios.git"
-      remoteBranch: "move-files"
+      remoteBranch: "final-test"
       scripts:
         - name: 'kubernetes-create-environment'
           description: ''
@@ -26,7 +26,7 @@ deploymentConfig:
   deploymentPatterns:
     - name: 'deployment'
       remoteRepository: "https://github.com/ThishaniLucas/ballerina-integrator-testgrid-scenarios.git"
-      remoteBranch: "move-files"
+      remoteBranch: "final-test"
       description: 'deployment of the resources in the gke'
       scripts:
         - name: 'ballerina-integrator-deployment'
@@ -39,7 +39,7 @@ deploymentConfig:
 scenarioConfigs:
   - testType: TESTNG
     remoteRepository: "https://github.com/ThishaniLucas/ballerina-integrator-testgrid-scenarios.git"
-    remoteBranch: "move-files"
+    remoteBranch: "final-test"
     name: "ballerina-integrator-testgrid-scenarios"
     description: "scenarios"
     file: testgrid-scripts/s3/s3_test.sh
