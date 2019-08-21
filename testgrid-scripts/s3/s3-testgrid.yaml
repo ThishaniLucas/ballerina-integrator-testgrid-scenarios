@@ -1,0 +1,45 @@
+# A testGrid Job
+version: '0.9'
+emailToList: "thishani@wso2.com"
+infrastructureConfig:
+  iacProvider: KUBERNETES
+  infrastructureProvider: GKE
+  containerOrchestrationEngine: None
+  includes:
+    - CentOS-7.5
+    - MySQL-5.7
+    - OPEN_JDK8
+  provisioners:
+    - name: kubernetes working environment
+      description: Provision Infra for running intg tests
+      remoteRepository: "https://github.com/ThishaniLucas/ballerina-integrator-testgrid-scenarios.git"
+      remoteBranch: "move-files"
+      scripts:
+        - name: 'kubernetes-create-environment'
+          description: ''
+          type: KUBERNETES
+          phase: CREATE
+        - name: 'kubernetes-destroy-environment'
+          type: KUBERNETES
+          phase: DESTROY
+deploymentConfig:
+  deploymentPatterns:
+    - name: 'deployment'
+      remoteRepository: "https://github.com/ThishaniLucas/ballerina-integrator-testgrid-scenarios.git"
+      remoteBranch: "move-files"
+      description: 'deployment of the resources in the gke'
+      scripts:
+        - name: 'ballerina-integrator-deployment'
+          type: SHELL
+          file: testgrid-scripts/s3/s3_deployement.sh
+          inputParameters:
+            BallerinaVersion: "0.991.0"
+            isDebugEnabled: "true"
+            TestGroup: "s3_test"
+scenarioConfigs:
+  - testType: TESTNG
+    remoteRepository: "https://github.com/ThishaniLucas/ballerina-integrator-testgrid-scenarios.git"
+    remoteBranch: "move-files"
+    name: "ballerina-integrator-testgrid-scenarios"
+    description: "scenarios"
+    file: testgrid-scripts/s3/s3_test.sh

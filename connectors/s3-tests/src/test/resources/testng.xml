@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Ballerina-Integrator-Testgrid-Scenarios">
+    <parameter name="useDefaultListeners" value="false"/>
+
+
+    <test name="s3-tests" preserve-order="true" parallel="false">
+        <classes>
+            <class name="org.wso2.integration.ballerina.test.SampleTest"/>
+        </classes>
+    </test>
+</suite>

@@ -43,8 +43,8 @@ string secretAccessKey = config:getAsString("SECRET_ACCESS_KEY");
 amazons3:ClientConfiguration amazonS3Config = {
     // accessKeyId: accessKeyId,
     // secretAccessKey: secretAccessKey
-    accessKeyId: "***",
-    secretAccessKey: "***"
+    accessKeyId: accessKeyId,
+    secretAccessKey: secretAccessKey
     // region: "us-east-1"
 };
 
