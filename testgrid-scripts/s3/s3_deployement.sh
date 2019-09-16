@@ -36,16 +36,16 @@ setup_deployment(){
 
 #Download S3 connector
 download_s3(){
-git clone https://github.com/KasunAratthanage/module-amazons3.git
+git clone https://github.com/wso2-ballerina/module-amazons3.git
 cd module-amazons3
-${ballerina_home}/bin/ballerina build amazons3 --skiptests
+${ballerina_home}/bin/ballerina build -c --skip-tests amazons3
 cd ..
 echo "=== S3 setup successfully  ==="
 }
 
 #Copy ballerina service to s3
 build_bal_service(){
-cp connectors/s3-tests/src/test/resources/api_test.bal ./module-amazons3
+cp -r connectors/s3-tests/src/test/resources/s3test ./module-amazons3/src
 cd module-amazons3
 touch ballerina.conf
 chmod -R 766 ballerina.conf
@@ -53,12 +53,12 @@ chmod -R 766 ballerina.conf
 echo "ACCESS_KEY_ID="\"$ballerina_integrator_aws_s3_access_key\" >> ./ballerina.conf
 echo "SECRET_ACCESS_KEY="\"$ballerina_integrator_aws_s3_secret_key\" >> ./ballerina.conf
 
-${ballerina_home}/bin/ballerina build api_test.bal
+${ballerina_home}/bin/ballerina build s3test --b7a.config.file=./ballerina.conf
 
 echo "=== Ballerina service built successfully ==="
 
 # Run generated docker
-kubectl apply -f ./target/kubernetes/api_test --namespace=${cluster_namespace}
+kubectl apply -f ./target/kubernetes/s3test --namespace=${cluster_namespace}
 }
 
 write_properties_to_data_bucket() {

@@ -33,7 +33,7 @@ deploymentConfig:
           type: SHELL
           file: testgrid-scripts/s3/s3_deployement.sh
           inputParameters:
-            BallerinaVersion: "0.991.0"
+            BallerinaVersion: "1.0.0"
             isDebugEnabled: "true"
             TestGroup: "s3_test"
 scenarioConfigs:
