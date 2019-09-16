@@ -27,15 +27,19 @@ install_ballerina() {
         exit 2
     fi
     echo "Installing Ballerina version: ${ballerina_version}"
-    wget https://product-dist.ballerina.io/downloads/${ballerina_version}/ballerina-${ballerina_version}.zip --quiet
+    wget https://product-dist.ballerina.io/downloads/${ballerina_version}/ballerina-linux-installer-x64-${ballerina_version}.deb --quiet
     local wget_output=$?
     if [ ${wget_output} -ne 0 ]; then
         echo "Ballerina download failed!"
         exit 2;
     fi
-    unzip -q ballerina-${ballerina_version}.zip -d ${utils_parent_path}
-    ${utils_parent_path}/ballerina-${ballerina_version}/bin/ballerina version
-    readonly ballerina_home=${utils_parent_path}/ballerina-${ballerina_version}
+    sudo dpkg -i ballerina-linux-installer-x64-${ballerina_version}.deb
+    ballerina version
+
+#    unzip -q ballerina-${ballerina_version}.zip -d ${utils_parent_path}
+#    ${utils_parent_path}/ballerina-${ballerina_version}/bin/ballerina version
+    readonly ballerina_home=/usr/lib/ballerina/ballerina-${ballerina_version}
+    echo "Ballerina Home: ${ballerina_home}"
 }
 
 # Generates a random namespace name
