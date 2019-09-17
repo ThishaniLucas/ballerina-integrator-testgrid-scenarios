@@ -57,6 +57,8 @@ ${ballerina_home}/bin/ballerina build s3test --b7a.config.file=./ballerina.conf
 
 echo "=== Ballerina service built successfully ==="
 
+docker images
+
 # Run generated docker
 kubectl apply -f ./target/kubernetes/s3test --namespace=${cluster_namespace}
 }

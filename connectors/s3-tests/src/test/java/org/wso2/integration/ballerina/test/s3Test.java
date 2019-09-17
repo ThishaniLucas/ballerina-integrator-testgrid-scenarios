@@ -16,7 +16,7 @@ import java.io.File;
 
 import static io.restassured.RestAssured.given;
 
-public class SampleTest {
+public class s3Test {
 
     //private static final String INPUTS_LOCATION = System.getProperty("data.bucket.location");
     private static final String INPUTS_LOCATION = System.getenv("input_dir");
@@ -25,29 +25,20 @@ public class SampleTest {
     private static String nodeport ;
     private static String namespace;
 
-    static void test()  throws Exception {
-
-
-        System.out.println();
-        //InputStream input = new FileInputStream("/home/kasun/Documents/Test_grid/Test_api/src/test/java/deployment.properties");
+    static void initParams()  throws Exception {
         InputStream input = new FileInputStream(INPUTS_LOCATION+"/deployment.properties");
         Properties props =new Properties();
         props.load(input);
         externalip = props.getProperty("ExternalIP");
         nodeport = props.getProperty("NodePort");
         namespace = props.getProperty("namespace");
-        System.out.println(externalip);
-        System.out.println(nodeport);
-        System.out.println(namespace);
-        System.out.println("************INPUTS_LOCATION******************"+INPUTS_LOCATION);
     }
 
     @BeforeTest
     public void init() throws Exception {
         try {
-        test();
+        initParams();
         RestAssured.baseURI = "http://"+ externalip +":"+ nodeport+"/amazons3/";
-
         } catch (Exception e) {
                 e.printStackTrace();
         }

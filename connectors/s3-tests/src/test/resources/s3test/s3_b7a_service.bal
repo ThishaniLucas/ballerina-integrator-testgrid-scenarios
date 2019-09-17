@@ -59,7 +59,7 @@ amazons3:ClientConfiguration amazonS3Config = {
 //Add `@kubernetes:Ingress` to a listner endpoint to expose the endpoint as Kubernetes Ingress.
 @kubernetes:Ingress {
     //Hostname of the service is `abc.com`.
-    hostname: "abc.com"
+    hostname: "s3.bi.wso2.com"
 }
 listener http:Listener awsS3EP = new http:Listener(9090);
 
@@ -76,8 +76,8 @@ listener http:Listener awsS3EP = new http:Listener(9090);
     //Genrate Docker image with name `kubernetes:v1.0`.
     //image: "kubernetes:v.1.0"
     //Uncomment and change the following values accordingly if you are using minikube.
-    image:"ballerinaintegrator/api_test:v.1.0",
-    name:"api_test",
+    image:"ballerinaintegrator/s3_connector_test:v.1.0",
+    name:"s3_connector_test",
     username:"ballerinaintegrator",
     password:"ballerinaintegrator",
     push:true,
@@ -87,7 +87,7 @@ listener http:Listener awsS3EP = new http:Listener(9090);
 @http:ServiceConfig {
     basePath: "/amazons3"
 }
-service amazonS3Service on new http:Listener(9090) {
+service amazonS3Service on awsS3EP {
     @http:ResourceConfig {
         methods: ["POST"],
         path: "/{bucketName}"
@@ -100,13 +100,13 @@ service amazonS3Service on new http:Listener(9090) {
         http:Response backendResponse = new();
 
         if (amazonS3Client is amazons3:AmazonS3Client) {
-            var response = amazonS3Client->createBucket(bucketName);
+            var response = amazonS3Client->createBucket(<@untainted> bucketName);
             if (response is error) {
                 createAndSendErrorResponse(caller, <@untainted> <string>response.detail()?.message,
                                 BUCKET_CREATION_ERROR_MSG);
             } else {
                 // If there is no error, then bucket created successfully. Send the success response.
-                backendResponse.setTextPayload(string `${bucketName} created on Amazon S3.`,
+                backendResponse.setTextPayload(<@untainted> string `${bucketName} created on Amazon S3.`,
                                 contentType = "text/plain");
                 respondAndHandleError(caller, backendResponse, RESPOND_ERROR_MSG);
             }
@@ -126,13 +126,13 @@ service amazonS3Service on new http:Listener(9090) {
         // Define new response. 
         http:Response backendResponse = new();
         if (amazonS3Client is amazons3:AmazonS3Client) {
-            var response = amazonS3Client->deleteBucket(bucketName);
+            var response = amazonS3Client->deleteBucket(<@untainted> bucketName);
             if (response is error) {
                 createAndSendErrorResponse(caller, <@untainted> <string>response.detail()?.message,
                                         BUCKET_DELETION_ERROR_MSG);
             } else {
                 // If there is no error, then bucket deleted successfully. Send the success response.
-                backendResponse.setTextPayload(string `${bucketName} deleted from Amazon S3.`,
+                backendResponse.setTextPayload(<@untainted> string `${bucketName} deleted from Amazon S3.`,
                                         contentType = "text/plain");
                 respondAndHandleError(caller, backendResponse, RESPOND_ERROR_MSG);
             }
